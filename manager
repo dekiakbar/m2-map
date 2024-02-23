@@ -190,6 +190,7 @@ USAGE="Development script
   install-sample-data   Install sample data
   magento-docker        Run bin/magento-docker command. ie: bin/manager magento-docker --help
   composer              Run composer
+  db-export             Export current Database
   
 \033[33mCLI container commands:\033[0m
   ece-command           Run ece-tools / ece-command CLI commands. https://devdocs.magento.com/cloud/reference/ece-tools-reference.html
@@ -265,6 +266,9 @@ case "$1" in
     ;;
   run-cron)
     docker compose run --rm --no-deps cron run-cron ${*:2}
+    ;;
+  db-export)
+    $DEPLOY_CONTAINER mysqldump -h db -umagento2 -pmagento2 magento2 > dbdump/$(date +'%Y-%m-%d_%H-%M-%S').sql
     ;;
   *)
     printf "$USAGE"
