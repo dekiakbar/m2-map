@@ -18,7 +18,7 @@
             <block class="Magento\Store\Block\Switcher" name="store_switcher" as="store_switcher" after="footer_links" template="Magento_Store::switch/stores.phtml"/>
         </referenceContainer>
         <referenceBlock name="report.bugs" remove="true"/>
-        <move element="copyright" destination="before.body.end"/>
+        <!-- <move element="copyright" destination="before.body.end"/> -->
         
         <!-- custom mobile nav menu -->
         <referenceContainer name="page.top">
@@ -92,6 +92,17 @@
             </container>
         </referenceContainer>
         <move element="store_language" destination="custom-top-header-right" before="-" />
-            
+        
+        <!-- Remove footer default link and add footer link from cms -->
+        <referenceBlock name="footer_links" remove="true" />
+        <referenceContainer name="footer">
+            <container name="custom-footer" htmlTag="div" htmlClass="custom-footer" before="copyright">
+                <block class="Magento\Cms\Block\Block" name="custom-footer-link">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer-links</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
     </body>
 </page>

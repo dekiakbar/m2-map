@@ -29,13 +29,13 @@
             margin: 0;
 
             .control {
-                .lib-icon-font(
-                @icon-envelope,
-                @_icon-font-size: 16px,
-                @_icon-font-line-height: 32px,
-                @_icon-font-color: @form-element-input-placeholder__color,
-                @_icon-font-margin: 0 0 0 8px
-                );
+                // .lib-icon-font(
+                // @icon-envelope,
+                // @_icon-font-size: 16px,
+                // @_icon-font-line-height: 32px,
+                // @_icon-font-color: @form-element-input-placeholder__color,
+                // @_icon-font-margin: 0 0 0 8px
+                // );
 
                 &:before {
                     position: absolute;
@@ -69,6 +69,11 @@
             border-top-left-radius: 0;
             margin-left: -1px;
             white-space: nowrap;
+
+            svg{
+                margin-right: 3px;
+                fill: @color-white;
+            }
         }
     }
 }
