@@ -600,10 +600,17 @@
             }
         }
 
-        .links {
-            a,
-            strong {
-                padding: 0 0 @indent__s 0;
+        .collapsible{
+            &:not(.open){
+                .links{
+                    display: none;
+                }
+            }
+            .links {
+                a,
+                strong {
+                    padding: 0 0 @indent__s 0;
+                }
             }
         }
     }
