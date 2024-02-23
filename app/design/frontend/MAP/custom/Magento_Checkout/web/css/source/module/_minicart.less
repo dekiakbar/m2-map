@@ -10,7 +10,7 @@
 @minicart__border-color: @color-gray80;
 @minicart__padding-horizontal: @indent__base;
 
-@minicart-qty__height: 24px;
+@minicart-qty__height: 15px;
 
 //
 //  Common
@@ -113,6 +113,11 @@
     }
 
     .minicart-wrapper {
+        background-image: url('../images/cart.svg');
+        background-size: 38px 38px;
+        width: 35px;
+        height: 32px;
+
         .lib-dropdown(
             @_toggle-selector: ~'.action.showcart',
             @_options-selector: ~'.block-minicart',
@@ -121,8 +126,8 @@
             @_dropdown-list-pointer-position: right,
             @_dropdown-list-pointer-position-left-right: 12px,
             @_dropdown-list-z-index: 101,
-            @_dropdown-toggle-icon-content: @icon-cart,
-            @_dropdown-toggle-active-icon-content: @icon-cart,
+            @_dropdown-toggle-icon-content: "",
+            @_dropdown-toggle-active-icon-content: "",
             @_dropdown-list-item-padding: false,
             @_dropdown-list-item-hover: false,
             @_icon-font-position: before,
@@ -177,7 +182,7 @@
 
             &.showcart {
                 white-space: nowrap;
-
+                height: 40px;
                 .text {
                     &:extend(.abs-visually-hidden all);
                 }
@@ -187,12 +192,12 @@
                     .lib-css(color, @page__background-color);
                     .lib-css(height, @minicart-qty__height);
                     .lib-css(line-height, @minicart-qty__height);
-                    border-radius: 2px;
+                    border-radius: 10px;
                     display: inline-block;
-                    margin: 3px 0 0;
-                    min-width: 18px;
+                    margin: -5px 0 0 25px;
+                    min-width: 15px;
                     overflow: hidden;
-                    padding: 0 3px;
+                    // padding: 0 3px;
                     text-align: center;
                     white-space: normal;
 

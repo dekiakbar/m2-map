@@ -7,10 +7,10 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="header.panel">
-            <block class="Magento\Framework\View\Element\Html\Links" name="header.links">
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Framework\View\Element\Html\Links" name="header.links" before="topSearch">
                 <arguments>
-                    <argument name="css_class" xsi:type="string">header links</argument>
+                    <argument name="css_class" xsi:type="string">custom header links</argument>
                 </arguments>
             </block>
         </referenceContainer>
@@ -19,5 +19,68 @@
         </referenceContainer>
         <referenceBlock name="report.bugs" remove="true"/>
         <move element="copyright" destination="before.body.end"/>
+
+        <referenceContainer name="page.top">
+            <block class="Magento\Framework\View\Element\Template" name="navigation.sections" before="-" template="Magento_Theme::html/sections.phtml">
+                <arguments>
+                    <argument name="group_name" xsi:type="string">navigation-sections</argument>
+                    <argument name="group_css" xsi:type="string">nav-sections</argument>
+                </arguments>
+                <block class="Magento\Framework\View\Element\Template" name="store.menu" group="navigation-sections" template="Magento_Theme::html/container.phtml">
+                    <!-- <arguments>
+                        <argument name="title" translate="true" xsi:type="string">Menu</argument>
+                    </arguments> -->
+                    <block class="Magento\Theme\Block\Html\Topmenu" name="catalog.topnav" template="Magento_Theme::html/topmenu.phtml" ttl="3600" before="-"/>
+                    <!-- My account -->
+                    <block class="Magento\Framework\View\Element\Html\Links" name="navigation.sections.header.links">
+                        <arguments>
+                            <argument name="css_class" xsi:type="string">header links</argument>
+                        </arguments>
+                        <block class="Magento\Customer\Block\Account\Link" name="navigation.sections-my-account-link">
+                            <arguments>
+                                <argument name="label" xsi:type="string" translate="true">My Account</argument>
+                                <argument name="sortOrder" xsi:type="number">110</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Wishlist\Block\Link" name="navigation.sections-wish-list-link">
+                            <arguments>
+                                <argument name="sortOrder" xsi:type="number">60</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Customer\Block\Account\RegisterLink" name="navigation.sections-register-link">
+                            <arguments>
+                                <argument name="label" xsi:type="string" translate="true">Create an Account</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Customer\Block\Account\AuthorizationLink" name="navigation.sections-authorization-link"
+                            template="Magento_Customer::account/link/authorization.phtml"/>
+                    </block>
+                    <!-- lang switcher -->
+                    <block class="Magento\Store\Block\Switcher" name="navigation.sections.language" template="Magento_Store::switch/languages.phtml">
+                        <arguments>
+                            <argument name="id_modifier" xsi:type="string">nav</argument>
+                            <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>
+                        </arguments>
+                    </block>
+                    <!-- currency -->
+                    <block class="Magento\Directory\Block\Currency" name="navigation.sections.currency" template="Magento_Directory::currency.phtml">
+                        <arguments>
+                            <argument name="id_modifier" xsi:type="string">nav</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+            <container name="top.container" as="topContainer" label="After Page Header Top" htmlTag="div" htmlClass="top-container"/>
+            <block class="Magento\Theme\Block\Html\Breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
+        </referenceContainer>
+
+        <referenceContainer name="header.panel">
+            <block class="Magento\Theme\Block\Html\Header" name="custom.message" as="custom.message" before="-" template="Magento_Theme::html/custom-message.phtml">
+                <arguments>
+                    <argument name="show_part" xsi:type="string">welcome</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+            
     </body>
 </page>
