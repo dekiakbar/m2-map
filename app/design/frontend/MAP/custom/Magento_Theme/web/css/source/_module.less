@@ -289,7 +289,7 @@
     }
 
     .footer {
-        padding: 30px 0;
+        padding: 0 30px 30px 0;
 
         &.content {
             ul:extend(.abs-reset-list all) {
@@ -341,12 +341,23 @@
             * Newsletter
             */
             .newsletter{
-                input{
-                    height: 40px;
-                    border-radius: 20px;
-                    margin-right: 35px;
-                    padding: 0 0 0 35px;
+                &.block{
+                    padding: 30px 0;
+
+                    strong{
+                        font-weight: 400;
+                        font-size: 16px;
+                        text-transform: uppercase;
+                        line-height: 18px;
+                    }
                 }
+
+                // input{
+                //     height: 40px;
+                //     border-radius: 20px;
+                //     margin-right: 35px;
+                //     padding: 0 0 0 35px;
+                // }
 
                 button.subscribe{
                     background-color: #04214d;
@@ -900,15 +911,16 @@
                     background: transparent;
                     border: none;
                     font-size: 14px;
-                    margin: 0 0 8px;
+                    margin: 0 0 10px;
                     padding: 0;
                 }
 
-                a,
-                strong {
-                    display: inline;
-                    padding: @indent__s 0;
-                }
+            }
+
+            strong {
+                display: inline;
+                // padding: @indent__s 0;
+                margin-bottom: 20px;
             }
         }
     }
