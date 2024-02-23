@@ -1,10 +1,8 @@
 
 require([
-  'jquery',
-  'jquery/ui'
+  'jquery'
 ], function(
-  $,
-  ui
+  $
 ) {
   
   /**
