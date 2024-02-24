@@ -601,6 +601,8 @@
         }
 
         .collapsible{
+            position: relative;
+
             &:not(.open){
                 .links{
                     display: none;
@@ -610,6 +612,30 @@
                 a,
                 strong {
                     padding: 0 0 @indent__s 0;
+                }
+            }
+
+            .title{
+                &::before{
+                    content: "+";
+                    color: #b8d6ff;
+                    font-size: 24px;
+                    font-weight: 600;
+                    position: absolute;
+                    right: 5px;
+                    top: 0;
+                    transition: all .5s;
+                }
+            }
+
+            &.open{
+                .title{
+                    &::before{
+                        transform: rotate(45deg);
+                        -webkit-transform: rotate(45deg);
+                        -moz-transform: rotate(45deg);
+                        -o-transform: rotate(45deg);
+                    }
                 }
             }
         }
