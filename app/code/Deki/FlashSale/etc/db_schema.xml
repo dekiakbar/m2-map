@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="deki_flashsale_event" resource="default" engine="innodb" comment="deki_flashsale_event Table">
+		<column xsi:type="int" name="event_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="event_id"/>
+		</constraint>
+		<column name="is_enabled" nullable="false" xsi:type="boolean" comment="is_enabled" default="1"/>
+		<column name="name" nullable="true" xsi:type="text" comment="name"/>
+		<column name="category_id" nullable="true" xsi:type="int" comment="category_id" identity="false" unsigned="true"/>
+		<column name="date_time_from" nullable="true" xsi:type="datetime" comment="date_time_from"/>
+		<column name="date_time_to" nullable="true" xsi:type="datetime" comment="date_time_to"/>
+	</table>
+</schema>
