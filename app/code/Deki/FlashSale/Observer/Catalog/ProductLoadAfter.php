@@ -19,20 +19,13 @@ class ProductLoadAfter implements \Magento\Framework\Event\ObserverInterface
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {
-      // echo "<pre/>";
-      // print_r(
-      //   $observer->getEvent()->getCollection()->getItems()->getSpecialPrice()
-      // );exit;
-      
-      // area : produk view
-      $collection = $observer->getEvent()->getCollection();
-      foreach($collection as $product){
-        if($product->getTypeId() == 'simple'){
-          $product->setData('special_price', 1000);
-          $product->setData('final_price', 1000);
-          $product->setData('flash_sale_percentage', 90);
-          $product->setData('is_flash_sale', true);
-        }
+      // area : add to cart first time
+      $product = $observer->getEvent()->getProduct();
+      if($product && $product->getTypeId() == 'simple'){
+        $product->setFinalPrice(30000);
+        $product->setSpecialPrice(30000);
+        $product->setData('flash_sale_percentage', 90);
+        $product->setData('is_flash_sale', true);
       }
     }
 }

@@ -9,15 +9,14 @@ namespace Deki\FlashSale\Plugin\Magento\Catalog\Model\Product;
 
 class Type
 {
-
     public function beforeGetPriceInfo(
         \Magento\Catalog\Model\Product\Type $subject,
         $saleableItem
     ) {
-        // area : harga add to cart
-        // $saleableItem->setSpecialPrice(30000);
-        // $saleableItem->setData('flash_sale_percentage', 90);
-        // $saleableItem->setData('is_flash_sale', true);
+        // area : produk view
+        $saleableItem->setSpecialPrice(30000);
+        $saleableItem->setData('flash_sale_percentage', 90);
+        $saleableItem->setData('is_flash_sale', true);
         return [$saleableItem];
     }
 }

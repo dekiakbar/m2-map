@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
 	<event name="catalog_product_collection_load_after">
-		<observer name="deki_flashsale_observer_catalog_productloadafter" instance="Deki\FlashSale\Observer\Catalog\ProductLoadAfter"/>
+		<observer name="deki_flashsale_product_collection_load_after" instance="Deki\FlashSale\Observer\Catalog\ProductCollectionLoadAfter"/>
+	</event>
+	<event name="catalog_product_load_after">
+		<observer name="deki_flashsale_product_load_after" instance="Deki\FlashSale\Observer\Catalog\ProductLoadAfter"/>
 	</event>
 </config>
