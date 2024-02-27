@@ -171,4 +171,16 @@
 			</formElements>
 		</field>
 	</fieldset>
+	<fieldset name="flash_sale_assign_products" sortOrder="40">
+        <settings>
+            <collapsible>true</collapsible>
+						<opened>true</opened>
+            <label translate="true">Products</label>
+        </settings>
+        <container name="flash_sale_assign_products_container" sortOrder="160">
+            <htmlContent name="html_content">
+                <block name="gallery" class="Deki\FlashSale\Block\Adminhtml\Event\Product\AssignProducts"/>
+            </htmlContent>
+        </container>
+    </fieldset>
 </form>
