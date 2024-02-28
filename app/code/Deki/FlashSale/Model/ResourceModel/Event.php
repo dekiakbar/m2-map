@@ -115,20 +115,13 @@ class Event extends AbstractDb
          * Update product in event
          */
         if (!empty($update)) {
-            try{
-                foreach ($update as $productId => $updateData) {
-                    $bind = [
-                        'price' => new \Zend_Db_Expr("$updateData[0]"),
-                        'qty' => new \Zend_Db_Expr("$updateData[1]")
-                    ];
-                    $where = ['event_id = ?' => (int)$id, 'product_id = ?' => $productId];
-                    $connection->update($this->getEventProductTable(), $bind, $where);
-                }
-            }catch(\Exception $e){
-                echo "<br/>";
-                print_r(
-                    $e->getMessage()
-                );
+            foreach ($update as $productId => $updateData) {
+                $bind = [
+                    'price' => new \Zend_Db_Expr("$updateData[0]"),
+                    'qty' => new \Zend_Db_Expr("$updateData[1]")
+                ];
+                $where = ['event_id = ?' => (int)$id, 'product_id = ?' => $productId];
+                $connection->update($this->getEventProductTable(), $bind, $where);
             }
         }
 
