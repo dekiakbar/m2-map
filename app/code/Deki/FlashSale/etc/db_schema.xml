@@ -22,5 +22,8 @@
 			<column name="event_product_id"/>
 		</constraint>
 		<constraint xsi:type="foreign" referenceId="FK_DEKI_FLASHSALE_EVENT_PRODUCT_EVENT_ID_FLASHSALE_EVENT_EVENT_ID" table="deki_flashsale_event_product" column="event_id" referenceTable="deki_flashsale_event" referenceColumn="event_id" onDelete="CASCADE"/>
+		<index referenceId="IDX_DEKI_FLASHSALE_EVENT_PRODUCT_PRODUCT_ID">
+			<column name="product_id"/>
+    </index>
 	</table>
 </schema>
