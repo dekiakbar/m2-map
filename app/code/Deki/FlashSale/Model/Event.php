@@ -9,9 +9,24 @@ namespace Deki\FlashSale\Model;
 
 use Deki\FlashSale\Api\Data\EventInterface;
 use Magento\Framework\Model\AbstractModel;
-
+use Deki\FlashSale\Model\ResourceModel\EventProduct\CollectionFactory as EventProductCollectionFactory;
+use Deki\FlashSale\Model\ResourceModel\EventProduct\Collection as EventProductCollection;
 class Event extends AbstractModel implements EventInterface
 {
+    protected $_eventProductCollectionFactory;
+
+    public function __construct(
+        EventProductCollectionFactory $eventProductCollectionFactory,
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        array $data = []
+    )
+    {
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+        $this->_eventProductCollectionFactory = $eventProductCollectionFactory;
+    }
 
     /**
      * @inheritDoc
@@ -72,22 +87,6 @@ class Event extends AbstractModel implements EventInterface
     /**
      * @inheritDoc
      */
-    public function getCategoryId()
-    {
-        return $this->getData(self::CATEGORY_ID);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setCategoryId($categoryId)
-    {
-        return $this->setData(self::CATEGORY_ID, $categoryId);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function getDateTimeFrom()
     {
         return $this->getData(self::DATE_TIME_FROM);
@@ -115,6 +114,37 @@ class Event extends AbstractModel implements EventInterface
     public function setDateTimeTo($dateTimeTo)
     {
         return $this->setData(self::DATE_TIME_TO, $dateTimeTo);
+    }
+
+    /**
+     * Get Event Products
+     *
+     * @return EventProductCollection
+     */
+    public function getEventProducts()
+    {
+        $collection = $this->_eventProductCollectionFactory->create();
+        $collection->addFieldToFilter('event_id', $this->getId());
+        return $collection;
+    }
+
+    /**
+     * Get Event Products
+     *
+     * @return array
+     */
+    public function getEventProductsArray()
+    {
+        $eventProductDatas = $this->getEventProducts();
+        $result = [];
+        foreach ($eventProductDatas as $eventProduct) {
+            $result[$eventProduct->getProductId()] =  [
+                $eventProduct->getPrice(),
+                $eventProduct->getQty()
+            ];
+        }
+
+        return $result;
     }
 }
 

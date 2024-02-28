@@ -36,6 +36,7 @@ class Save extends \Magento\Backend\App\Action
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
+
         if ($data) {
             $id = $this->getRequest()->getParam('event_id');
         
@@ -46,12 +47,22 @@ class Save extends \Magento\Backend\App\Action
             }
         
             $model->setData($data);
-        
+            
+            /**
+             * Process Event Products
+             */
+            if (isset($data['event_products'])
+                && is_string($data['event_products'])
+            ) {
+                $products = json_decode($data['event_products'], true);
+                $model->setPostedProducts($products);
+            }
+
             try {
                 $model->save();
                 $this->messageManager->addSuccessMessage(__('You saved the Event.'));
                 $this->dataPersistor->clear('deki_flashsale_event');
-        
+
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['event_id' => $model->getId()]);
                 }

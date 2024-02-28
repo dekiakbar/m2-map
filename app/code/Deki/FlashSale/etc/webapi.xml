@@ -30,4 +30,34 @@
 			<resource ref="Deki_FlashSale::event_delete"/>
 		</resources>
 	</route>
+	<route url="/V1/deki-flashsale/event_product" method="POST">
+		<service class="Deki\FlashSale\Api\EventProductRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Deki_FlashSale::event_product_save"/>
+		</resources>
+	</route>
+	<route url="/V1/deki-flashsale/event_product/search" method="GET">
+		<service class="Deki\FlashSale\Api\EventProductRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Deki_FlashSale::event_product_view"/>
+		</resources>
+	</route>
+	<route url="/V1/deki-flashsale/event_product/:eventProductId" method="GET">
+		<service class="Deki\FlashSale\Api\EventProductRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Deki_FlashSale::event_product_view"/>
+		</resources>
+	</route>
+	<route url="/V1/deki-flashsale/event_product/:eventProductId" method="PUT">
+		<service class="Deki\FlashSale\Api\EventProductRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Deki_FlashSale::event_product_update"/>
+		</resources>
+	</route>
+	<route url="/V1/deki-flashsale/event_product/:eventProductId" method="DELETE">
+		<service class="Deki\FlashSale\Api\EventProductRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Deki_FlashSale::event_product_delete"/>
+		</resources>
+	</route>
 </routes>

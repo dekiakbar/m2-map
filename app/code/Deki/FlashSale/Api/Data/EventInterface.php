@@ -13,7 +13,6 @@ interface EventInterface
     const DATE_TIME_FROM = 'date_time_from';
     const EVENT_ID = 'event_id';
     const NAME = 'name';
-    const CATEGORY_ID = 'category_id';
     const DATE_TIME_TO = 'date_time_to';
     const IS_ENABLED = 'is_enabled';
 
@@ -55,19 +54,6 @@ interface EventInterface
      * @return \Deki\FlashSale\Event\Api\Data\EventInterface
      */
     public function setName($name);
-
-    /**
-     * Get category_id
-     * @return string|null
-     */
-    public function getCategoryId();
-
-    /**
-     * Set category_id
-     * @param string $categoryId
-     * @return \Deki\FlashSale\Event\Api\Data\EventInterface
-     */
-    public function setCategoryId($categoryId);
 
     /**
      * Get date_time_from

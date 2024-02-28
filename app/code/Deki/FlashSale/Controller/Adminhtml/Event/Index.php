@@ -34,7 +34,9 @@ class Index extends \Magento\Backend\App\Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-            $resultPage->getConfig()->getTitle()->prepend(__("event"));
+            $resultPage->getConfig()->getTitle()->prepend(
+                __("Flash Sale Event")
+            );
             return $resultPage;
     }
 }

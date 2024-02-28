@@ -81,41 +81,6 @@
 				</validation>
 			</settings>
 		</field>
-		<field name="category_id" component="Magento_Catalog/js/components/new-category" sortOrder="30" formElement="select">
-			<argument name="data" xsi:type="array">
-					<item name="config" xsi:type="array">
-							<item name="filterOptions" xsi:type="boolean">true</item>
-							<item name="multiple" xsi:type="boolean">false</item>
-							<item name="showCheckbox" xsi:type="boolean">false</item>
-							<item name="disableLabel" xsi:type="boolean">true</item>
-							<item name="levelsVisibility" xsi:type="number">1</item>
-							<item name="source" xsi:type="string">event</item>
-							<item name="description" xsi:type="string" translate="true">
-								Which category to appl this flas sale.
-							</item>
-					</item>
-			</argument>
-			<settings>
-					<elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
-					<label translate="true">Category</label>
-					<dataScope>category_id</dataScope>
-					<componentType>field</componentType>
-					<visible>true</visible>
-					<listens>
-							<link name="${ $.namespace }.${ $.namespace }:responseData">setParsed</link>
-					</listens>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">true</rule>
-					</validation>
-			</settings>
-			<formElements>
-					<select>
-							<settings>
-									<options class="Magento\Catalog\Ui\Component\Product\Form\Categories\Options"/>
-							</settings>
-					</select>
-			</formElements>
-		</field>
 		<field name="date_time_from" formElement="date" sortOrder="40">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">

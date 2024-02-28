@@ -57,7 +57,7 @@ class Edit extends \Deki\FlashSale\Controller\Adminhtml\Event
             $id ? __('Edit Event') : __('New Event')
         );
         $resultPage->getConfig()->getTitle()->prepend(__('Events'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? __('Edit Event %1', $model->getId()) : __('New Event'));
+        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? __('Edit Event %1', $model->getName()) : __('New Event'));
         return $resultPage;
     }
 }

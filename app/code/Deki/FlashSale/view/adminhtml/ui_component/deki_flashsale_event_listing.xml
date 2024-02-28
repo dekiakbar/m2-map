@@ -14,7 +14,7 @@
 			<button name="add">
 				<url path="*/*/new"/>
 				<class>primary</class>
-				<label translate="true">Add new event</label>
+				<label translate="true">Add Event</label>
 			</button>
 		</buttons>
 	</settings>
@@ -76,16 +76,44 @@
 				<label translate="true">ID</label>
 			</settings>
 		</column>
-		<column name="is_enabled">
+		<column name="name">
 			<settings>
 				<filter>text</filter>
-				<label translate="true">is_enabled</label>
+				<label translate="true">Event Name</label>
 				<editor>
 					<editorType>text</editorType>
 					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
 					</validation>
 				</editor>
+			</settings>
+		</column>
+		<column name="is_enabled" component="Magento_Ui/js/grid/columns/select">
+				<settings>
+						<label translate="true">Is Enabled</label>
+						<options class="Magento\Config\Model\Config\Source\Yesno"/>
+						<filter>select</filter>
+						<dataType>select</dataType>
+				</settings>
+		</column>
+		<column name="date_time_from"
+					class="Magento\Ui\Component\Listing\Columns\Date"
+					component="Magento_Ui/js/grid/columns/date"
+					>
+			<settings>
+					<filter>dateRange</filter>
+					<dataType>date</dataType>
+					<label translate="true">Start Date</label>
+			</settings>
+		</column>
+		<column name="date_time_to"
+					class="Magento\Ui\Component\Listing\Columns\Date"
+					component="Magento_Ui/js/grid/columns/date"
+					>
+			<settings>
+					<filter>dateRange</filter>
+					<dataType>date</dataType>
+					<label translate="true">End Date</label>
 			</settings>
 		</column>
 		<actionsColumn name="actions" class="Deki\FlashSale\Ui\Component\Listing\Column\EventActions">
@@ -95,53 +123,5 @@
 				<resizeDefaultWidth>107</resizeDefaultWidth>
 			</settings>
 		</actionsColumn>
-		<column name="name">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">name</label>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
-		<column name="category_id">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">category_id</label>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
-		<column name="date_time_from">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">date_time_from</label>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
-		<column name="date_time_to">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">date_time_to</label>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
 	</columns>
 </listing>
