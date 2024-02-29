@@ -116,6 +116,18 @@
 					<label translate="true">End Date</label>
 			</settings>
 		</column>
+		<column name="sort_order">
+			<settings>
+				<filter>number</filter>
+				<label translate="true">Sort Order (Priority)</label>
+				<editor>
+					<editorType>number</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
 		<actionsColumn name="actions" class="Deki\FlashSale\Ui\Component\Listing\Column\EventActions">
 			<settings>
 				<indexField>event_id</indexField>

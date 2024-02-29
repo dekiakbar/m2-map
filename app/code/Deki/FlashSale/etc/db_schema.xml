@@ -6,6 +6,8 @@
 		<column name="name" nullable="true" xsi:type="text" comment="name"/>
 		<column name="date_time_from" nullable="true" xsi:type="datetime" comment="date_time_from"/>
 		<column name="date_time_to" nullable="true" xsi:type="datetime" comment="date_time_to"/>
+		<column name="sort_order" nullable="false" xsi:type="int" comment="sort_order" default="0" identity="false"/>
+
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="event_id"/>
 		</constraint>
@@ -25,5 +27,25 @@
 		<index referenceId="IDX_DEKI_FLASHSALE_EVENT_PRODUCT_PRODUCT_ID">
 			<column name="product_id"/>
     </index>
+	</table>
+	<table name="deki_flashsale_event_product_price" resource="default" engine="innodb" comment="deki_flashsale_event_product_price Table">
+		<column xsi:type="int" name="event_product_price_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<column name="event_id" nullable="false" xsi:type="int" comment="event_id" identity="false" unsigned="true"/>
+		<column name="product_id" nullable="true" xsi:type="int" comment="product_id" identity="false" unsigned="true"/>
+		<column name="price" nullable="true" xsi:type="decimal" comment="price" scale="4" precision="12"/>
+		<column name="discount_amount" nullable="true" xsi:type="decimal" comment="discount_amount" scale="4" precision="12"/>
+		<column name="start_date" nullable="true" xsi:type="datetime" comment="start_date"/>
+		<column name="end_date" nullable="true" xsi:type="datetime" comment="end_date"/>
+		<column name="created_at" nullable="false" xsi:type="timestamp" comment="created_at" default="CURRENT_TIMESTAMP"/>
+
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="event_product_price_id"/>
+		</constraint>
+		<index referenceId="DEKI_FLASHSALE_EVENT_PRODUCT_PRICE_EVENT_ID" indexType="btree">
+			<column name="event_id"/>
+		</index>
+		<index referenceId="DEKI_FLASHSALE_EVENT_PRODUCT_PRICE_PRODUCT_ID" indexType="btree">
+			<column name="product_id"/>
+		</index>
 	</table>
 </schema>

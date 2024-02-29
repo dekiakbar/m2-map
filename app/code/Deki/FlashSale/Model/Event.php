@@ -117,6 +117,22 @@ class Event extends AbstractModel implements EventInterface
     }
 
     /**
+     * @inheritDoc
+     */
+    public function getSortOrder()
+    {
+        return $this->getData(self::SORT_ORDER);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setSortOrder($sortOrder)
+    {
+        return $this->setData(self::SORT_ORDER, $sortOrder);
+    }
+
+    /**
      * Get Event Products
      *
      * @return EventProductCollection

@@ -135,6 +135,21 @@
 				</date>
 			</formElements>
 		</field>
+		<field name="sort_order" formElement="input">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">event</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>number</dataType>
+				<label translate="true">Sort Order (Priority)</label>
+				<dataScope>sort_order</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
 	</fieldset>
 	<fieldset name="flash_sale_assign_products" sortOrder="40">
         <settings>

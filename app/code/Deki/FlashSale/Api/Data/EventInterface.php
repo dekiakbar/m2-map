@@ -15,6 +15,7 @@ interface EventInterface
     const NAME = 'name';
     const DATE_TIME_TO = 'date_time_to';
     const IS_ENABLED = 'is_enabled';
+    const SORT_ORDER = 'sort_order';
 
     /**
      * Get event_id
@@ -80,5 +81,18 @@ interface EventInterface
      * @return \Deki\FlashSale\Event\Api\Data\EventInterface
      */
     public function setDateTimeTo($dateTimeTo);
+
+    /**
+     * Get sort_order
+     * @return string|null
+     */
+    public function getSortOrder();
+
+    /**
+     * Set sort_order
+     * @param string $sortOrder
+     * @return \Deki\FlashSale\Event\Api\Data\EventInterface
+     */
+    public function setSortOrder($sortOrder);
 }
 
