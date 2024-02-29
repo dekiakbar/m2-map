@@ -83,11 +83,20 @@ class EventProductPriceProcessor extends AbstractProcessor
 
         $uniqueProducts = [];
 
+        /** @var \Deki\FlashSale\Model\Event $event */
         foreach ($events as $event) {
             // Get event products for the current event
             $eventProducts = $event->getEventProducts();
 
+            /** @var \Deki\FlashSale\Model\EventProduct $product */
             foreach ($eventProducts as $product) {
+                /**
+                 * Skip / exclude product with limit 0 from flash sale
+                 */
+                if($product->getQty() <= 0){
+                    continue;
+                }
+
                 $productId = $product->getProductId();
 
                 // If product already exists in the uniqueProducts array
