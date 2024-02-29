@@ -10,4 +10,15 @@
         <title translate="true">Flash Sale Product Price</title>
         <description translate="true">Indexed flash sale product price association</description>
     </indexer>
+
+    <!--
+        Make catalog product price indexer depend on flash_sale_product_price
+        and flash sale price will be copy to catalog_product_index_price
+        by app/code/Deki/FlashSale/Model/Indexer/PriceIndexModifier.php
+    -->
+    <indexer id="catalog_product_price">
+        <dependencies>
+            <indexer id="flash_sale_product_price" />
+        </dependencies>
+    </indexer>
 </config>

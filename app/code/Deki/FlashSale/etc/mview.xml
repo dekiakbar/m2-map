@@ -14,4 +14,10 @@
             <table name="catalog_product_entity_decimal" entity_column="entity_id" />
         </subscriptions>
     </view>
+
+    <view id="catalog_product_price" class="Magento\Catalog\Model\Indexer\Product\Price" group="indexer">
+        <subscriptions>
+            <table name="deki_flashsale_event_product_price" entity_column="product_id" />
+        </subscriptions>
+    </view>
 </config>
