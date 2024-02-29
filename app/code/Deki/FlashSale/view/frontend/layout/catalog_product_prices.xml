@@ -12,7 +12,10 @@
             <argument name="default" xsi:type="array">
                 <item name="prices" xsi:type="array">
                     <item name="final_price" xsi:type="array">
-                        <item name="render_template" xsi:type="string">Deki_FlashSale::product/simple/price/final_price.phtml</item>
+                        <item name="render_template" xsi:type="string">Deki_FlashSale::catalog/product/simple/price/final_price.phtml</item>
+                    </item>
+                    <item name="wishlist_configured_price" xsi:type="array">
+                        <item name="render_template" xsi:type="string">Deki_FlashSale::wishlist/product/price/configured_price.phtml</item>
                     </item>
                 </item>
             </argument>
@@ -21,7 +24,10 @@
             <argument name="configurable" xsi:type="array">
                 <item name="prices" xsi:type="array">
                     <item name="final_price" xsi:type="array">
-                        <item name="render_template" xsi:type="string">Deki_FlashSale::product/configurable/price/final_price.phtml</item>
+                        <item name="render_template" xsi:type="string">Deki_FlashSale::catalog/product/configurable/price/final_price.phtml</item>
+                    </item>
+                    <item name="wishlist_configured_price" xsi:type="array">
+                        <item name="render_template" xsi:type="string">Deki_FlashSale::wishlist/product/price/configurable/configured_price.phtml</item>
                     </item>
                 </item>
             </argument>
