@@ -24,14 +24,14 @@ class EventProductPrice extends AbstractDb
      * Get flash sale product price for specific date
      *
      * @param \DateTimeInterface $date
-     * @param int $pId
+     * @param int $productId
      * @return float|false
      */
-    public function getFlashSalePrice($date, $pId)
+    public function getFlashSalePrice($date, $productId)
     {
-        $data = $this->getFlashSalePrices($date, [$pId]);
-        if (isset($data[$pId])) {
-            return $data[$pId];
+        $data = $this->getFlashSalePrices($date, [$productId]);
+        if (isset($data[$productId])) {
+            return $data[$productId];
         }
 
         return false;

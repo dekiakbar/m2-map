@@ -22,10 +22,6 @@
 	<preference for="Deki\FlashSale\Api\Data\EventProductInterface" type="Deki\FlashSale\Model\EventProduct"/>
 	<preference for="Deki\FlashSale\Api\Data\EventProductSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 
-	<!-- <type name="Magento\Catalog\Model\Product\Type">
-		<plugin name="Deki_FlashSale_Plugin_Magento_Catalog_Model_Product_Type" type="Deki\FlashSale\Plugin\Magento\Catalog\Model\Product\Type" sortOrder="10" disabled="false"/>
-	</type> -->
-
 	<!-- PDP - PLP pricing -->
 	<virtualType name="Magento\Catalog\Pricing\Price\Pool" type="Magento\Framework\Pricing\Price\Pool">
 			<arguments>

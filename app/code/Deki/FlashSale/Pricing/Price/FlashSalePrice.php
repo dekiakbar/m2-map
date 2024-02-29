@@ -16,7 +16,7 @@ use Magento\Framework\Pricing\Price\BasePriceProviderInterface;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Deki\FlashSale\Model\ResourceModel\EventProductPrice;
+use Deki\FlashSale\Model\ResourceModel\EventProductPriceFactory;
 
 /**
  * Class FlashSalePrice
@@ -46,9 +46,9 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
     protected $customerSession;
 
     /**
-     * @var EventProductPrice
+     * @var EventProductPriceFactory
      */
-    private $eventProductPrice;
+    private $eventProductPriceFactory;
 
     /**
      * @param Product $saleableItem
@@ -58,7 +58,7 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
      * @param TimezoneInterface $dateTime
      * @param StoreManagerInterface $storeManager
      * @param Session $customerSession
-     * @param EventProductPrice $eventProductPrice
+     * @param EventProductPriceFactory $eventProductPriceFactory
      */
     public function __construct(
         Product $saleableItem,
@@ -68,13 +68,13 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
         TimezoneInterface $dateTime,
         StoreManagerInterface $storeManager,
         Session $customerSession,
-        EventProductPrice $eventProductPrice
+        EventProductPriceFactory $eventProductPriceFactory
     ) {
         parent::__construct($saleableItem, $quantity, $calculator, $priceCurrency);
         $this->dateTime = $dateTime;
         $this->storeManager = $storeManager;
         $this->customerSession = $customerSession;
-        $this->eventProductPrice = $eventProductPrice;
+        $this->eventProductPriceFactory = $eventProductPriceFactory;
     }
 
     /**
@@ -89,7 +89,7 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
                 $value = $this->product->getData(self::PRICE_CODE);
                 $this->value = $value ? (float)$value : false;
             } else {
-                $this->value = $this->eventProductPrice->getFlashSalePrice(
+                $this->value = $this->eventProductPriceFactory->create()->getFlashSalePrice(
                     $this->dateTime->scopeDate($this->storeManager->getStore()->getId(), null, true),
                     $this->product->getId()
                 );
