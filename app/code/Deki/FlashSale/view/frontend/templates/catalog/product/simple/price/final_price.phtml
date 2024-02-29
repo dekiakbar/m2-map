@@ -18,9 +18,6 @@ $finalPriceModel = $block->getPriceType('final_price');
 $idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
 $schema = ($block->getZone() == 'item_view') ? true : false;
 ?>
-<?php
-    // echo $block->getSaleableItem()->getData('flash_sale_percentage');
-?>
 <?php if ($block->hasSpecialPrice()) :?>
     <span class="special-price">
         <?= /* @noEscape */ $block->renderAmount($finalPriceModel->getAmount(), [
