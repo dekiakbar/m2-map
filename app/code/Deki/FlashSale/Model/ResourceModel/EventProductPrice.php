@@ -52,7 +52,19 @@ class EventProductPrice extends AbstractDb
             ->from($this->getTable($this->getMainTable()), ['product_id', 'price'])
             ->where('`start_date` <= ?', $date->format('Y-m-d H:i:s'))
             ->where('`end_date` >= ?', $date->format('Y-m-d H:i:s'))
-            ->where('product_id IN(?)', $productIds, \Zend_Db::INT_TYPE);
+            ->where('deki_flashsale_event_product_price.product_id IN(?)', $productIds, \Zend_Db::INT_TYPE);
+
+        /**
+         * Exclude from flash sale if qty is 0 (real time)
+         */
+        $select->join(
+            ['ev' => $this->getTable('deki_flashsale_event_product')],
+            'ev.product_id = deki_flashsale_event_product_price.product_id'
+            .' AND ev.event_id = deki_flashsale_event_product_price.event_id',
+            ['qty' => 'ev.qty']
+        );
+
+        $select->where('qty > 0');
 
         return $connection->fetchPairs($select);
     }
