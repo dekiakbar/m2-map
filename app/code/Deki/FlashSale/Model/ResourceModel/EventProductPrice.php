@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Deki\FlashSale\Model\ResourceModel;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class EventProductPrice extends AbstractDb
@@ -25,9 +26,9 @@ class EventProductPrice extends AbstractDb
      *
      * @param \DateTimeInterface $date
      * @param int $productId
-     * @return float|false
+     * @return array|false
      */
-    public function getFlashSalePrice($date, $productId)
+    public function getFlashSalePriceInfo($date, $productId)
     {
         $data = $this->getFlashSalePrices($date, [$productId]);
         if (isset($data[$productId])) {
@@ -49,7 +50,7 @@ class EventProductPrice extends AbstractDb
     {
         $connection = $this->getConnection();
         $select = $connection->select()
-            ->from($this->getTable($this->getMainTable()), ['product_id', 'price'])
+            ->from($this->getTable($this->getMainTable()), ['product_id', 'price', 'event_id'])
             ->where('`start_date` <= ?', $date->format('Y-m-d H:i:s'))
             ->where('`end_date` >= ?', $date->format('Y-m-d H:i:s'))
             ->where('deki_flashsale_event_product_price.product_id IN(?)', $productIds, \Zend_Db::INT_TYPE);
@@ -62,12 +63,15 @@ class EventProductPrice extends AbstractDb
             ['ev' => $this->getTable('deki_flashsale_event_product')],
             'ev.product_id = deki_flashsale_event_product_price.product_id'
             .' AND ev.event_id = deki_flashsale_event_product_price.event_id',
-            ['qty' => 'ev.qty']
+            [
+                'qty' => 'ev.qty',
+                'flash_sale_event_product_id' => 'ev.event_product_id',
+            ]
         );
 
         $select->where('qty > 0');
 
-        return $connection->fetchPairs($select);
+        return $connection->fetchAssoc($select);
     }
 }
 

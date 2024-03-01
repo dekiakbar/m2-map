@@ -19,7 +19,6 @@ use Deki\FlashSale\Model\ResourceModel\EventProductPriceFactory;
  */
 class ProcessFrontFinalPriceObserver implements ObserverInterface
 {
-
     /**
      * @var StoreManagerInterface
      */
@@ -68,10 +67,19 @@ class ProcessFrontFinalPriceObserver implements ObserverInterface
             $date = $this->localeDate->scopeDate($storeId, null, true);
         }
 
-        $flashSalePrice = $this->eventProductPriceFactory->create()->getFlashSalePrice($date, $productId);
+        $flashSalePrice = $this->eventProductPriceFactory->create()->getFlashSalePriceInfo($date, $productId);
         if ($flashSalePrice !== false) {
-            $finalPrice = min($product->getData('final_price'),$flashSalePrice);
+            $finalPrice = min( $product->getData('final_price'), $flashSalePrice['price']);
             $product->setFinalPrice($finalPrice);
+
+            /**
+             * Inject product attribute will be used in quote item.
+             * e.g: Deki\FlashSale\Observer\CopyAtrributeToQuoteItem
+             */
+            $product->setData('is_flash_sale', true);
+            $product->setData('flash_sale_event_id', $flashSalePrice['event_id']);
+            $product->setData('flash_sale_event_product_id', $flashSalePrice['flash_sale_event_product_id']);
+            $product->setData('flash_sale_qty', $flashSalePrice['qty']);
         }
         return $this;
     }

@@ -48,4 +48,9 @@
 			<column name="product_id"/>
 		</index>
 	</table>
+	<table name="quote_item">
+		<column name="is_flash_sale" nullable="true" xsi:type="text" comment="Is Flash Sale"/>
+		<column name="flash_sale_event_id" nullable="true" xsi:type="text" comment="Event Id"/>
+		<column name="flash_sale_event_product_id" nullable="true" xsi:type="text" comment="Event Product Id"/>
+	</table>
 </schema>

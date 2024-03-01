@@ -89,11 +89,11 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
                 $value = $this->product->getData(self::PRICE_CODE);
                 $this->value = $value ? (float)$value : false;
             } else {
-                $this->value = $this->eventProductPriceFactory->create()->getFlashSalePrice(
+                $flashSalePriceInfo = $this->eventProductPriceFactory->create()->getFlashSalePriceInfo(
                     $this->dateTime->scopeDate($this->storeManager->getStore()->getId(), null, true),
                     $this->product->getId()
                 );
-                $this->value = $this->value ? (float)$this->value : false;
+                $this->value = $flashSalePriceInfo ? (float)$flashSalePriceInfo['price'] : false;
             }
             if ($this->value) {
                 $this->value = $this->priceCurrency->convertAndRound($this->value);
