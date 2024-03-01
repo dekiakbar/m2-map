@@ -192,13 +192,13 @@
                     .lib-css(background, @active__color);
                     .lib-css(color, @page__background-color);
                     .lib-css(height, @minicart-qty__height);
-                    .lib-css(line-height, @minicart-qty__height);
+                    .lib-css(line-height, (@minicart-qty__height - 3px));
                     border-radius: 10px;
                     display: inline-block;
                     margin: -5px 0 0 25px;
                     min-width: 15px;
                     overflow: hidden;
-                    // padding: 0 3px;
+                    padding: 0px 3px;
                     text-align: center;
                     white-space: normal;
 
@@ -215,6 +215,7 @@
 
                 .counter-number {
                     text-shadow: 0 0 7px rgba(0, 0, 0, 1);
+                    font-size: 1rem;
                 }
 
                 .counter-label {
