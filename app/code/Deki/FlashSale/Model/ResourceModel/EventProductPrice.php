@@ -55,7 +55,8 @@ class EventProductPrice extends AbstractDb
             ->where('deki_flashsale_event_product_price.product_id IN(?)', $productIds, \Zend_Db::INT_TYPE);
 
         /**
-         * Exclude from flash sale if qty is 0 (real time)
+         * Exclude from flash sale if qty is 0 (real time).
+         * if qty 0, exclude product from flash sale
          */
         $select->join(
             ['ev' => $this->getTable('deki_flashsale_event_product')],
