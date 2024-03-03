@@ -22,5 +22,7 @@
                 </block>
             </container>
         </referenceContainer>
+        <!-- remove compare menu from header -->
+        <referenceContainer name="compare-link-wrapper" remove="true"/>
     </body>
 </page>
