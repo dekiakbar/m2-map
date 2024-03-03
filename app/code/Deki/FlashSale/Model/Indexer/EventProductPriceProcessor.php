@@ -13,6 +13,7 @@ use Magento\Store\Model\StoreManagerInterface;
 use Deki\FlashSale\Model\ResourceModel\EventProductPrice\CollectionFactory as PriceCollectionFactory;
 use Deki\FlashSale\Model\ResourceModel\EventProductPrice\Collection as PriceCollection;
 use Magento\Framework\Indexer\AbstractProcessor;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFActory;
 
 class EventProductPriceProcessor extends AbstractProcessor
 {
@@ -42,6 +43,11 @@ class EventProductPriceProcessor extends AbstractProcessor
     protected $priceCollectionFactory;
 
     /**
+     * @var ProductCollectionFActory
+     */
+    protected $productCollectionFActory;
+
+    /**
      * @param CollectionFactory $eventFactory
      * @param TimezoneInterface $timeZone
      * @param StoreManagerInterface $storeManager
@@ -52,13 +58,15 @@ class EventProductPriceProcessor extends AbstractProcessor
         CollectionFactory $eventFactory,
         TimezoneInterface $timeZone,
         StoreManagerInterface $storeManager,
-        PriceCollectionFactory $priceCollectionFactory
+        PriceCollectionFactory $priceCollectionFactory,
+        ProductCollectionFActory $productCollectionFActory
     ) {
         parent::__construct($indexerRegistry);
         $this->eventFactory = $eventFactory;
         $this->timeZone = $timeZone;
         $this->storeManager = $storeManager;
         $this->priceCollectionFactory = $priceCollectionFactory;
+        $this->productCollectionFActory = $productCollectionFActory;
     }
 
     /**
@@ -141,6 +149,11 @@ class EventProductPriceProcessor extends AbstractProcessor
         }
 
         $bulkSaleProductPrice = [];
+        $col = $this->productCollectionFActory->create();
+        $col->addAttributeToSelect('price');
+        $col->addAttributeToFilter('entity_id', ['in' => array_keys($uniqueProducts)]);
+        $regularPrices = $col->toArray();
+
         foreach ($uniqueProducts as $productId => $data) {
             $event = $data['event'];
             $product = $data['product'];
@@ -149,7 +162,10 @@ class EventProductPriceProcessor extends AbstractProcessor
             'event_id' => $event->getId(),
             'product_id' => $productId,
             'price' => $product->getPrice(),
-            'discount_amount' => 0,
+            'discount_amount' => $this->calculateDiscount(
+                $regularPrices[$productId]['price'],
+                $product->getPrice()
+            ),
             'start_date' => $event->getDateTimeFrom(),
             'end_date' => $event->getDateTimeTo()
             ];
@@ -174,5 +190,17 @@ class EventProductPriceProcessor extends AbstractProcessor
         $connection = $priceCollection->getConnection();
         $tableName = $priceCollection->getMainTable();
         $connection->truncateTable($tableName);
+    }
+
+    /**
+     * Calculate Dicount amount
+     *
+     * @param float $regularPrice
+     * @param float $flashSalePrice
+     * @return float
+     */
+    public function calculateDiscount($regularPrice, $flashSalePrice)
+    {
+        return (float)(100 - ($flashSalePrice / $regularPrice * 100));
     }
 }

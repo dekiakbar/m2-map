@@ -20,7 +20,7 @@ class FlashSaleService
     public const IS_FLASH_SALE = 'is_flash_sale';
     public const EVENT_ID = 'flash_sale_event_id';
     public const EVENT_PRODUCT_ID = 'flash_sale_event_product_id';
-
+    public const FLASH_SALE_DISCOUNT = 'flash_sale_dicount_amount';
     public const ERROR_QUOTE_ORIGIN = 'flash_sale';
     public const ERROR_QUOTE_MESSAGE = 'You have Invalid product(s).';
     public const ERROR_QUOTE_ITEM_QTY = 'Exceeded maximum allowed flash sale quantity.';

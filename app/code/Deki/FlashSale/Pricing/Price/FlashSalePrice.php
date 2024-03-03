@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace Deki\FlashSale\Pricing\Price;
 
+use Deki\FlashSale\Model\FlashSaleService;
 use Magento\Catalog\Model\Product;
-use Magento\CatalogRule\Model\ResourceModel\Rule;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Pricing\Adjustment\Calculator;
 use Magento\Framework\Pricing\Price\AbstractPrice;
@@ -93,6 +93,7 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
                     $this->dateTime->scopeDate($this->storeManager->getStore()->getId(), null, true),
                     $this->product->getId()
                 );
+                $this->setFlashSaleInfo($flashSalePriceInfo);
                 $this->value = $flashSalePriceInfo ? (float)$flashSalePriceInfo['price'] : false;
             }
             if ($this->value) {
@@ -101,5 +102,22 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
         }
 
         return $this->value;
+    }
+
+    /**
+     * Set flash sale into into product attribute
+     *
+     * @param array|false $flashSalePriceInfo
+     * @return void
+     */
+    public function setFlashSaleInfo($flashSalePriceInfo)
+    {
+        if(!$flashSalePriceInfo){
+            return;
+        }
+
+        if($discount = $flashSalePriceInfo['discount_amount']){
+            $this->product->setData(FlashSaleService::FLASH_SALE_DISCOUNT, $discount);
+        }
     }
 }

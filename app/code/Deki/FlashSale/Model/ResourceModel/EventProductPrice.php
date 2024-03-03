@@ -50,7 +50,7 @@ class EventProductPrice extends AbstractDb
     {
         $connection = $this->getConnection();
         $select = $connection->select()
-            ->from($this->getTable($this->getMainTable()), ['product_id', 'price', 'event_id'])
+            ->from($this->getTable($this->getMainTable()), ['product_id', 'price', 'event_id', 'discount_amount'])
             ->where('`start_date` <= ?', $date->format('Y-m-d H:i:s'))
             ->where('`end_date` >= ?', $date->format('Y-m-d H:i:s'))
             ->where('deki_flashsale_event_product_price.product_id IN(?)', $productIds, \Zend_Db::INT_TYPE);

@@ -6,7 +6,7 @@
 ?>
 
 <?php
-/** @var \Magento\Catalog\Pricing\Render\FinalPriceBox $block */
+/** @var \Deki\FlashSale\Pricing\Render\Simple\FinalPriceBox $block */
 
 /** ex: \Magento\Catalog\Pricing\Price\RegularPrice */
 /** @var \Magento\Framework\Pricing\Price\PriceInterface $priceModel */
@@ -19,6 +19,11 @@ $idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
 $schema = ($block->getZone() == 'item_view') ? true : false;
 ?>
 <?php if ($block->hasSpecialPrice()) :?>
+    <?php if($block->hasFlashSalePrice()): ?>
+        <span class="discount-amount">
+            <?= /* @noEscape */ $block->renderDiscountAmount(); ?>
+        </span>
+    <?php endif; ?>
     <span class="special-price">
         <?= /* @noEscape */ $block->renderAmount($finalPriceModel->getAmount(), [
             'display_label'     => __(''),
