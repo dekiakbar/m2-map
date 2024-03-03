@@ -17,7 +17,7 @@ use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Deki\FlashSale\Model\ResourceModel\EventProductPriceFactory;
-
+use Deki\FlashSale\Model\Config;
 /**
  * Class FlashSalePrice
  *
@@ -51,14 +51,21 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
     private $eventProductPriceFactory;
 
     /**
+     * @var Config
+     */
+    private $config;
+
+    /**
+     *
      * @param Product $saleableItem
-     * @param float $quantity
+     * @param [type] $quantity
      * @param Calculator $calculator
      * @param PriceCurrencyInterface $priceCurrency
      * @param TimezoneInterface $dateTime
      * @param StoreManagerInterface $storeManager
      * @param Session $customerSession
      * @param EventProductPriceFactory $eventProductPriceFactory
+     * @param Config $config
      */
     public function __construct(
         Product $saleableItem,
@@ -68,13 +75,15 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
         TimezoneInterface $dateTime,
         StoreManagerInterface $storeManager,
         Session $customerSession,
-        EventProductPriceFactory $eventProductPriceFactory
+        EventProductPriceFactory $eventProductPriceFactory,
+        Config $config
     ) {
         parent::__construct($saleableItem, $quantity, $calculator, $priceCurrency);
         $this->dateTime = $dateTime;
         $this->storeManager = $storeManager;
         $this->customerSession = $customerSession;
         $this->eventProductPriceFactory = $eventProductPriceFactory;
+        $this->config = $config;
     }
 
     /**
@@ -84,6 +93,10 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
      */
     public function getValue()
     {
+        if(!$this->config->isEnabled()){
+            return false;
+        }
+
         if (null === $this->value) {
             if ($this->product->hasData(self::PRICE_CODE)) {
                 $value = $this->product->getData(self::PRICE_CODE);

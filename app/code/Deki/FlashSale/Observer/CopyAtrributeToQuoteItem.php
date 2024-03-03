@@ -2,9 +2,23 @@
 namespace Deki\FlashSale\Observer;
  
 use Magento\Framework\Event\ObserverInterface;
- 
+use Deki\FlashSale\Model\Config;
 class CopyAtrributeToQuoteItem implements ObserverInterface
 {
+    /**
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * @param Config $config
+     */
+    public function __construct(
+        Config $config
+    ){
+        $this->config = $config;
+    }
+
     /**
      * @param \Magento\Framework\Event\Observer $observer
      * @return void
@@ -12,6 +26,10 @@ class CopyAtrributeToQuoteItem implements ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
+        if(!$this->config->isEnabled()){
+            return $this;
+        }
+
         $quoteItem = $observer->getQuoteItem();
         $product = $observer->getProduct();
 

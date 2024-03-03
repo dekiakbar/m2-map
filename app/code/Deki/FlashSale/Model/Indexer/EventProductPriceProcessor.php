@@ -15,6 +15,7 @@ use Deki\FlashSale\Model\ResourceModel\EventProductPrice\Collection as PriceColl
 use Magento\Framework\Indexer\AbstractProcessor;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFActory;
 
+use Deki\FlashSale\Model\Config;
 class EventProductPriceProcessor extends AbstractProcessor
 {
     /**
@@ -48,10 +49,18 @@ class EventProductPriceProcessor extends AbstractProcessor
     protected $productCollectionFActory;
 
     /**
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * @param \Magento\Framework\Indexer\IndexerRegistry $indexerRegistry
      * @param CollectionFactory $eventFactory
      * @param TimezoneInterface $timeZone
      * @param StoreManagerInterface $storeManager
      * @param PriceCollectionFactory $priceCollectionFactory
+     * @param ProductCollectionFActory $productCollectionFActory
+     * @param Config $config
      */
     public function __construct(
         \Magento\Framework\Indexer\IndexerRegistry $indexerRegistry,
@@ -59,7 +68,8 @@ class EventProductPriceProcessor extends AbstractProcessor
         TimezoneInterface $timeZone,
         StoreManagerInterface $storeManager,
         PriceCollectionFactory $priceCollectionFactory,
-        ProductCollectionFActory $productCollectionFActory
+        ProductCollectionFActory $productCollectionFActory,
+        Config $config
     ) {
         parent::__construct($indexerRegistry);
         $this->eventFactory = $eventFactory;
@@ -67,6 +77,7 @@ class EventProductPriceProcessor extends AbstractProcessor
         $this->storeManager = $storeManager;
         $this->priceCollectionFactory = $priceCollectionFactory;
         $this->productCollectionFActory = $productCollectionFActory;
+        $this->config = $config;
     }
 
     /**
@@ -142,6 +153,10 @@ class EventProductPriceProcessor extends AbstractProcessor
      */
     public function reindexFull($storeId = null)
     {
+        if(!$this->config->isEnabled()){
+            return;
+        }
+
         $uniqueProducts = $this->getAvailableSale($storeId);
 
         if (count($uniqueProducts) <= 0) {

@@ -7,6 +7,7 @@ namespace Deki\FlashSale\Plugin\Indexer;
 
 use Deki\FlashSale\Model\Indexer\EventProductPriceProcessor;
 use Magento\ImportExport\Model\Import;
+use Deki\FlashSale\Model\Config;
 
 class ImportExport
 {
@@ -16,11 +17,21 @@ class ImportExport
     protected $eventProductPriceProcessor;
 
     /**
-     * @param EventProductPriceProcessor $eventProductPriceProcessor
+     * @var Config
      */
-    public function __construct(EventProductPriceProcessor $eventProductPriceProcessor)
-    {
+    private $config;
+
+    /**
+     *
+     * @param EventProductPriceProcessor $eventProductPriceProcessor
+     * @param Config $config
+     */
+    public function __construct(
+        EventProductPriceProcessor $eventProductPriceProcessor,
+        Config $config
+    ){
         $this->eventProductPriceProcessor = $eventProductPriceProcessor;
+        $this->config = $config;
     }
 
     /**
@@ -34,9 +45,14 @@ class ImportExport
      */
     public function afterImportSource(Import $subject, $result)
     {
+        if(!$this->config->isEnabled()){
+            return $result;
+        }
+
         if (!$this->eventProductPriceProcessor->isIndexerScheduled()) {
             $this->eventProductPriceProcessor->markIndexerAsInvalid();
         }
+
         return $result;
     }
 }

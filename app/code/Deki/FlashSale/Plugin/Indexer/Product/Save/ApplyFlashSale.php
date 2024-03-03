@@ -6,6 +6,7 @@
 namespace Deki\FlashSale\Plugin\Indexer\Product\Save;
 
 use Deki\FlashSale\Model\Indexer\EventProductPriceProcessor;
+use Deki\FlashSale\Model\Config;
 
 class ApplyFlashSale
 {
@@ -15,11 +16,21 @@ class ApplyFlashSale
     protected $eventProductPriceProcessor;
 
     /**
-     * @param EventProductPriceProcessor $eventProductPriceProcessor
+     * @var Config
      */
-    public function __construct(EventProductPriceProcessor $eventProductPriceProcessor)
-    {
+    private $config;
+
+    /**
+     *
+     * @param EventProductPriceProcessor $eventProductPriceProcessor
+     * @param Config $config
+     */
+    public function __construct(
+        EventProductPriceProcessor $eventProductPriceProcessor,
+        Config $config
+    ){
         $this->eventProductPriceProcessor = $eventProductPriceProcessor;
+        $this->config = $config;
     }
 
     /**
@@ -36,10 +47,15 @@ class ApplyFlashSale
         \Magento\Catalog\Model\ResourceModel\Product $productResource,
         \Magento\Framework\Model\AbstractModel $product
     ) {
+        if(!$this->config->isEnabled()){
+            return $productResource;
+        }
+
         if (!$product->getIsMassupdate()) {
             // TODO: maybe index only 1 product
             $this->eventProductPriceProcessor->markIndexerAsInvalid();
         }
+
         return $productResource;
     }
 }

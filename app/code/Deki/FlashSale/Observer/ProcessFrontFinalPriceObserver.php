@@ -11,6 +11,7 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Deki\FlashSale\Model\ResourceModel\EventProductPriceFactory;
+use Deki\FlashSale\Model\Config;
 
 /**
  * Observer for applying flash sale price on product for frontend area
@@ -35,18 +36,26 @@ class ProcessFrontFinalPriceObserver implements ObserverInterface
     private $eventProductPriceFactory;
 
     /**
+     * @var Config
+     */
+    private $config;
+
+    /**
      * @param StoreManagerInterface $storeManager
      * @param TimezoneInterface $localeDate
      * @param EventProductPriceFactory $eventProductPriceFactory
+     * @param Config $config
      */
     public function __construct(
         StoreManagerInterface $storeManager,
         TimezoneInterface $localeDate,
-        EventProductPriceFactory $eventProductPriceFactory
+        EventProductPriceFactory $eventProductPriceFactory,
+        Config $config
     ) {
         $this->storeManager = $storeManager;
         $this->localeDate = $localeDate;
         $this->eventProductPriceFactory = $eventProductPriceFactory;
+        $this->config = $config;
     }
 
     /**
@@ -57,6 +66,10 @@ class ProcessFrontFinalPriceObserver implements ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
+        if(!$this->config->isEnabled()){
+            return $this;
+        }
+
         $product = $observer->getEvent()->getProduct();
         $productId = $product->getId();
         $storeId = $product->getStoreId();

@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Deki\FlashSale\Observer;
 use Deki\FlashSale\Model\FlashSaleService;
+use Deki\FlashSale\Model\Config;
 
 class DeductQuantityAfterOrder implements \Magento\Framework\Event\ObserverInterface
 {
@@ -14,15 +15,22 @@ class DeductQuantityAfterOrder implements \Magento\Framework\Event\ObserverInter
      * @var FlashSaleService
      */
     protected $flashSaleService;
+    
+    /**
+     * @var Config
+     */
+    private $config;
 
     /**
-     *
      * @param FlashSaleService $flashSaleService
+     * @param Config $config
      */
     public function __construct(
-        FlashSaleService $flashSaleService
+        FlashSaleService $flashSaleService,
+        Config $config
     ){
         $this->flashSaleService = $flashSaleService;
+        $this->config = $config;
     }
 
     /**
@@ -34,6 +42,10 @@ class DeductQuantityAfterOrder implements \Magento\Framework\Event\ObserverInter
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {
+        if(!$this->config->isEnabled()){
+            return $this;
+        }
+
         /** @var \Magento\Quote\Model\Quote $quote */
         $quote = $observer->getEvent()->getQuote();
         $items = $quote->getItemsCollection();
