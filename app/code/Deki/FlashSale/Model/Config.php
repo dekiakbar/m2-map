@@ -18,6 +18,11 @@ class Config
     public const XML_IS_ENABLED = 'general/is_enabled';
 
     /**
+     * Supported products
+     */
+    public const XML_SUPPORTED_PRODUCTS_TYPE = 'general/supported_products_type';
+
+    /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
     protected $scopeConfig;
@@ -71,5 +76,18 @@ class Config
     public function isEnabled($storeId = null)
     {
         return $this->getConfig(self::XML_IS_ENABLED, $storeId);
+    }
+
+    /**
+     * Get supported products type.
+     * Return product type ID, eg: simple
+     *
+     * @param int|null $storeId
+     * @return array
+     */
+    public function getSupportedProductTypes($storeId = null)
+    {
+        $productIds = $this->getConfig(self::XML_SUPPORTED_PRODUCTS_TYPE, $storeId);
+        return explode(',', $productIds);
     }
 }

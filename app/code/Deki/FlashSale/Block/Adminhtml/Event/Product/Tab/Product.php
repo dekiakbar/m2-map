@@ -10,9 +10,10 @@ use Magento\Backend\Block\Widget\Grid\Column;
 use Magento\Backend\Block\Widget\Grid\Extended;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
 use Magento\Catalog\Model\Product\Visibility;
+use Magento\Catalog\Model\Product\Type;
 use Magento\Framework\App\ObjectManager;
 use Deki\FlashSale\Model\Event;
-
+use Deki\FlashSale\Model\Config;
 class Product extends \Magento\Backend\Block\Widget\Grid\Extended
 {
     /**
@@ -38,6 +39,16 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
     private $visibility;
 
     /**
+     * @var Config
+     */
+    private $config;
+
+    /**
+     * @var Type
+     */
+    private $type;
+
+    /**
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Backend\Helper\Data $backendHelper
      * @param \Magento\Catalog\Model\ProductFactory $productFactory
@@ -51,14 +62,18 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
         \Magento\Backend\Helper\Data $backendHelper,
         \Magento\Catalog\Model\ProductFactory $productFactory,
         \Magento\Framework\Registry $coreRegistry,
-        array $data = [],
         Visibility $visibility = null,
-        Status $status = null
+        Status $status = null,
+        Config $config,
+        Type $type,
+        array $data = []
     ) {
         $this->_productFactory = $productFactory;
         $this->_coreRegistry = $coreRegistry;
         $this->visibility = $visibility ?: ObjectManager::getInstance()->get(Visibility::class);
         $this->status = $status ?: ObjectManager::getInstance()->get(Status::class);
+        $this->config = $config;
+        $this->type = $type;
         parent::__construct($context, $backendHelper, $data);
     }
 
@@ -121,8 +136,15 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
         )->addAttributeToSelect(
             'status'
         )->addAttributeToSelect(
+            'type_id'
+        )->addAttributeToSelect(
             'price'
         );
+        
+        $supportedProdutcTypes = $this->config->getSupportedProductTypes();
+        if(!empty($supportedProdutcTypes)){
+            $collection->addFieldToFilter('type_id', ['in' => $supportedProdutcTypes]);
+        }
 
         $eventId = (int)$this->getRequest()->getParam('event_id', 0);
         $collection->getSelect()->joinLeft(
@@ -170,8 +192,23 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
                 'column_css_class' => 'col-id'
             ]
         );
-        $this->addColumn('name', ['header' => __('Name'), 'index' => 'name']);
-        $this->addColumn('sku', ['header' => __('SKU'), 'index' => 'sku']);
+        $this->addColumn(
+            'name',
+            [
+                'header' => __('Name'),
+                'index' => 'name',
+                'sortable' => false
+            ]
+        );
+        $this->addColumn(
+            'sku',
+            [
+                'header' => __('SKU'),
+                'index' => 'sku',
+                'sortable' => true,
+            ]
+        );
+
         $this->addColumn(
             'visibility',
             [
@@ -191,6 +228,16 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
                 'index' => 'status',
                 'type' => 'options',
                 'options' => $this->status->getOptionArray()
+            ]
+        );
+
+        $this->addColumn(
+            'type_id',
+            [
+                'header' => __('Type'),
+                'index' => 'type_id',
+                'type' => 'options',
+                'options' => $this->type->getOptionArray()
             ]
         );
 

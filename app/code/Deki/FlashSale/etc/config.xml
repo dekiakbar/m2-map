@@ -4,6 +4,7 @@
 		<flash_sale>
 			<general>
 				<is_enabled>1</is_enabled>
+				<supported_products_type>simple</supported_products_type>
 			</general>
 		</flash_sale>
 	</default>
