@@ -7,7 +7,7 @@
 //  Variables
 //  _____________________________________________
 
-@checkout-summary__background-color: @color-white-smoke;
+@checkout-summary__background-color: @color-white;
 @checkout-summary__padding: 22px @indent__l;
 
 @checkout-summary-title__margin: @indent__s;
@@ -31,6 +31,8 @@
         .lib-css(margin, 0 0 @checkout-sidebar__margin);
         .lib-css(padding, @checkout-summary__padding);
         &:extend(.abs-add-box-sizing all);
+
+        border: 2px solid #e7e7e7;
 
         > .title {
             &:extend(.abs-checkout-title all);
