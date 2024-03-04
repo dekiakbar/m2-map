@@ -89,6 +89,13 @@
     //  Header
     //  ---------------------------------------------
 
+    /** hide homepage title*/
+    .cms-home{
+        .page-title-wrapper{
+            display: none;
+        }
+    }
+
     .page-header {
         .lib-css(background-color, @header__background-color);
         border-bottom: 1px solid @border-color__base;
@@ -811,6 +818,10 @@
     }
 
     .custom.header.links{
+        // align center welcome message
+        display: flex;
+        align-items: center;
+        
         .greet.welcome{
             max-width: 100px;
             overflow: hidden;
