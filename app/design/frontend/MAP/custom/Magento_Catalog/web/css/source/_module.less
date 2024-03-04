@@ -24,6 +24,7 @@
     .old-price,
     .old.price {
         .lib-css(color, @product-price__muted__color);
+        text-decoration: line-through;
     }
 
     .prices-tier {
@@ -59,6 +60,8 @@
     }
 
     .special-price {
+        display: block;
+        .lib-css(color, @color-red9);
         .price-label {
             &:extend(.abs-visually-hidden all);
         }
@@ -551,7 +554,7 @@
         }
 
         .action.tocart {
-            border-radius: 0;
+            border-radius: @button__border-radius;
         }
 
         .subtitle {

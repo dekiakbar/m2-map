@@ -18,7 +18,8 @@
 @product-name-link__text-decoration__visited: @link__hover__text-decoration;
 
 @product-item__hover__background-color: @color-white;
-@product-item__hover__box-shadow: 3px 4px 4px 0 rgba(0, 0, 0, .3);
+@product-item__hover__box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+@product-item__hover__box-shadow-footer :0px 5px 5px 1px rgba(0, 0, 0, 0.1);
 
 @product-price__muted__color: @color-gray40;
 
@@ -46,6 +47,10 @@
                 display: inline-block;
                 margin-left: 2%;
                 width: calc(~'(100% - 2%)/2');
+            }
+
+            &-details{
+                padding: 0 5px;
             }
 
             &:nth-child(2n + 1) {
@@ -301,7 +306,6 @@
             &.active {
                 .lib-css(background, @product-item__hover__background-color);
                 .lib-css(box-shadow, @product-item__hover__box-shadow);
-                border: 1px solid @color-gray-light2;
                 margin: -10px;
                 padding: 9px;
                 position: relative;
@@ -323,11 +327,10 @@
     .product-item-inner {
         .products-grid & {
             .lib-css(background, @product-item__hover__background-color);
-            .lib-css(box-shadow, @product-item__hover__box-shadow);
-            border: 1px solid @color-gray-light2;
+            .lib-css(box-shadow, @product-item__hover__box-shadow-footer);
             border-top: none;
             left: 0;
-            margin: 10px 0 0 -1px;
+            margin: 10px 1px 0 -1px;
             padding: 0 9px 9px;
             position: absolute;
             right: -1px;
