@@ -72,22 +72,6 @@ class EventProduct extends AbstractModel implements EventProductInterface
     /**
      * @inheritDoc
      */
-    public function getDiscountAmount()
-    {
-        return $this->getData(self::DISCOUNT_AMOUNT);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setDiscountAmount($discountAmount)
-    {
-        return $this->setData(self::DISCOUNT_AMOUNT, $discountAmount);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function getPrice()
     {
         return $this->getData(self::PRICE);

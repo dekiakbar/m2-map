@@ -16,7 +16,6 @@
 		<column xsi:type="int" name="event_product_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
 		<column xsi:type="int" name="event_id" padding="10" unsigned="true" nullable="false" comment="event_id" identity="false"/>
 		<column name="product_id" nullable="true" xsi:type="int" comment="product_id" identity="false" unsigned="true"/>
-		<column name="discount_amount" nullable="true" xsi:type="float" comment="discount_amount"/>
 		<column name="price" nullable="true" xsi:type="text" comment="price"/>
 		<column name="qty" nullable="true" xsi:type="text" comment="qty"/>
 

@@ -12,7 +12,6 @@ interface EventProductInterface
     const EVENT_ID = 'event_id';
     const QTY = 'qty';
     const PRICE = 'price';
-    const DISCOUNT_AMOUNT = 'discount_amount';
     const EVENT_PRODUCT_ID = 'event_product_id';
     const PRODUCT_ID = 'product_id';
 
@@ -54,19 +53,6 @@ interface EventProductInterface
      * @return \Deki\FlashSale\EventProduct\Api\Data\EventProductInterface
      */
     public function setProductId($productId);
-
-    /**
-     * Get discount_amount
-     * @return string|null
-     */
-    public function getDiscountAmount();
-
-    /**
-     * Set discount_amount
-     * @param string $discountAmount
-     * @return \Deki\FlashSale\EventProduct\Api\Data\EventProductInterface
-     */
-    public function setDiscountAmount($discountAmount);
 
     /**
      * Get price
