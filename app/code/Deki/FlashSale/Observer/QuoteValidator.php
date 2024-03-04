@@ -10,6 +10,7 @@ namespace Deki\FlashSale\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Deki\FlashSale\Model\FlashSaleService;
 use Deki\FlashSale\Model\Config;
+
 class QuoteValidator implements ObserverInterface
 {
     /**
@@ -42,7 +43,7 @@ class QuoteValidator implements ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        if(!$this->config->isEnabled()){
+        if (!$this->config->isEnabled()) {
             return $this;
         }
 

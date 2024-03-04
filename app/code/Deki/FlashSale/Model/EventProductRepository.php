@@ -146,4 +146,3 @@ class EventProductRepository implements EventProductRepositoryInterface
         return $this->delete($this->get($eventProductId));
     }
 }
-

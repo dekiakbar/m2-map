@@ -28,7 +28,7 @@ class ApplyFlashSale
     public function __construct(
         EventProductPriceProcessor $eventProductPriceProcessor,
         Config $config
-    ){
+    ) {
         $this->eventProductPriceProcessor = $eventProductPriceProcessor;
         $this->config = $config;
     }
@@ -47,7 +47,7 @@ class ApplyFlashSale
         \Magento\Catalog\Model\ResourceModel\Product $productResource,
         \Magento\Framework\Model\AbstractModel $product
     ) {
-        if(!$this->config->isEnabled()){
+        if (!$this->config->isEnabled()) {
             return $productResource;
         }
 

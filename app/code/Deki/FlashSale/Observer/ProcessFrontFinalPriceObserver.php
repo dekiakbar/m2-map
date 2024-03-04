@@ -66,7 +66,7 @@ class ProcessFrontFinalPriceObserver implements ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        if(!$this->config->isEnabled()){
+        if (!$this->config->isEnabled()) {
             return $this;
         }
 
@@ -82,7 +82,7 @@ class ProcessFrontFinalPriceObserver implements ObserverInterface
 
         $flashSalePrice = $this->eventProductPriceFactory->create()->getFlashSalePriceInfo($date, $productId);
         if ($flashSalePrice !== false) {
-            $finalPrice = min( $product->getData('final_price'), $flashSalePrice['price']);
+            $finalPrice = min($product->getData('final_price'), $flashSalePrice['price']);
             $product->setFinalPrice($finalPrice);
 
             /**

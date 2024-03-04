@@ -29,7 +29,7 @@ class ImportExport
     public function __construct(
         EventProductPriceProcessor $eventProductPriceProcessor,
         Config $config
-    ){
+    ) {
         $this->eventProductPriceProcessor = $eventProductPriceProcessor;
         $this->config = $config;
     }
@@ -45,7 +45,7 @@ class ImportExport
      */
     public function afterImportSource(Import $subject, $result)
     {
-        if(!$this->config->isEnabled()){
+        if (!$this->config->isEnabled()) {
             return $result;
         }
 

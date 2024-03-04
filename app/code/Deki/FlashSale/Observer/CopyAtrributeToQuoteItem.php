@@ -3,6 +3,7 @@ namespace Deki\FlashSale\Observer;
  
 use Magento\Framework\Event\ObserverInterface;
 use Deki\FlashSale\Model\Config;
+
 class CopyAtrributeToQuoteItem implements ObserverInterface
 {
     /**
@@ -15,7 +16,7 @@ class CopyAtrributeToQuoteItem implements ObserverInterface
      */
     public function __construct(
         Config $config
-    ){
+    ) {
         $this->config = $config;
     }
 
@@ -26,7 +27,7 @@ class CopyAtrributeToQuoteItem implements ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        if(!$this->config->isEnabled()){
+        if (!$this->config->isEnabled()) {
             return $this;
         }
 
@@ -35,11 +36,10 @@ class CopyAtrributeToQuoteItem implements ObserverInterface
 
         $product->getFinalPrice();
 
-        if($product->getData('is_flash_sale')){
+        if ($product->getData('is_flash_sale')) {
             $quoteItem->setData('is_flash_sale', true);
-            $quoteItem->setData('flash_sale_event_id',$product->getData('flash_sale_event_id'));
-            $quoteItem->setData('flash_sale_event_product_id',$product->getData('flash_sale_event_product_id'));
+            $quoteItem->setData('flash_sale_event_id', $product->getData('flash_sale_event_id'));
+            $quoteItem->setData('flash_sale_event_product_id', $product->getData('flash_sale_event_product_id'));
         }
-        
     }
 }

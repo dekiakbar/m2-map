@@ -23,4 +23,3 @@ interface EventProductSearchResultsInterface extends \Magento\Framework\Api\Sear
      */
     public function setItems(array $items);
 }
-

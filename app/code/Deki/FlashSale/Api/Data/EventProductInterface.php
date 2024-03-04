@@ -80,4 +80,3 @@ interface EventProductInterface
      */
     public function setQty($qty);
 }
-

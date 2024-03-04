@@ -14,6 +14,7 @@ use Magento\Catalog\Model\Product\Type;
 use Magento\Framework\App\ObjectManager;
 use Deki\FlashSale\Model\Event;
 use Deki\FlashSale\Model\Config;
+
 class Product extends \Magento\Backend\Block\Widget\Grid\Extended
 {
     /**
@@ -142,7 +143,7 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
         );
         
         $supportedProdutcTypes = $this->config->getSupportedProductTypes();
-        if(!empty($supportedProdutcTypes)){
+        if (!empty($supportedProdutcTypes)) {
             $collection->addFieldToFilter('type_id', ['in' => $supportedProdutcTypes]);
         }
 

@@ -130,9 +130,9 @@ class FlashSaleService
 
         /**
          * Sometime quote save qty in parent item ID.
-         * So we also need to check parent item. 
+         * So we also need to check parent item.
          */
-        if($quoteItem->getParentItemId()){
+        if ($quoteItem->getParentItemId()) {
             $parentItem = $quoteItem->getParentItem();
 
             $parentIsQtyExceeded = $this->isQtyExceeded(

@@ -109,4 +109,3 @@ interface EventProductPriceInterface
      */
     public function setEndDate($endDate);
 }
-

@@ -74,4 +74,3 @@ class EventProductPrice extends AbstractDb
         return $connection->fetchAssoc($select);
     }
 }
-

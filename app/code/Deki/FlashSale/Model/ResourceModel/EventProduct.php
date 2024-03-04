@@ -20,4 +20,3 @@ class EventProduct extends AbstractDb
         $this->_init('deki_flashsale_event_product', 'event_product_id');
     }
 }
-

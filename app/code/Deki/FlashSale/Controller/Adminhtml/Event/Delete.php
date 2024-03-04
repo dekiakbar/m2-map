@@ -44,4 +44,3 @@ class Delete extends \Deki\FlashSale\Controller\Adminhtml\Event
         return $resultRedirect->setPath('*/*/');
     }
 }
-

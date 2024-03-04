@@ -59,4 +59,3 @@ interface EventProductRepositoryInterface
      */
     public function deleteById($eventProductId);
 }
-

@@ -38,4 +38,3 @@ class NewAction extends \Deki\FlashSale\Controller\Adminhtml\Event
         return $resultForward->forward('edit');
     }
 }
-

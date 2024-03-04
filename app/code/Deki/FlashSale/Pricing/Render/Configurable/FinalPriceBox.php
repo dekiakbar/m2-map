@@ -19,7 +19,8 @@ use Deki\FlashSale\Model\FlashSaleService;
 use Deki\FlashSale\Pricing\Price\FlashSalePrice;
 use Magento\Catalog\Pricing\Price\FinalPrice;
 
-class FinalPriceBox extends \Magento\ConfigurableProduct\Pricing\Render\FinalPriceBox{
+class FinalPriceBox extends \Magento\ConfigurableProduct\Pricing\Render\FinalPriceBox
+{
 
     /**
      * @var ConfigurableOptionsProviderInterface

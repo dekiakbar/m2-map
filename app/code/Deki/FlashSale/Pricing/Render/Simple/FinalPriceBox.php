@@ -11,7 +11,8 @@ use Deki\FlashSale\Model\FlashSaleService;
 use Magento\Catalog\Pricing\Price\FinalPrice;
 use Deki\FlashSale\Pricing\Price\FlashSalePrice;
 
-class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox {
+class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
+{
     /**
      * Define if the flash sale price should be shown
      *
