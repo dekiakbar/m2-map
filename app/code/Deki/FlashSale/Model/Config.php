@@ -39,7 +39,7 @@ class Config
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager
-    ){
+    ) {
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
     }
@@ -53,7 +53,7 @@ class Config
      */
     public function getConfig($path, $storeId = null)
     {
-        if(!empty($storeId)){
+        if (!empty($storeId)) {
             return $this->scopeConfig->getValue(
                 self::XML_BASE_PATH.$path,
                 \Magento\Store\Model\ScopeInterface::SCOPE_STORE,

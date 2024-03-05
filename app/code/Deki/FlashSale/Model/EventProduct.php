@@ -101,4 +101,3 @@ class EventProduct extends AbstractModel implements EventProductInterface
         return $this->setData(self::QTY, $qty);
     }
 }
-

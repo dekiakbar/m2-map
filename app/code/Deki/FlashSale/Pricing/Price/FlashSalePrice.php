@@ -18,11 +18,7 @@ use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Deki\FlashSale\Model\ResourceModel\EventProductPriceFactory;
 use Deki\FlashSale\Model\Config;
-/**
- * Class FlashSalePrice
- *
- * @SuppressWarnings(PHPMD.CookieAndSessionMisuse)
- */
+
 class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
 {
     /**
@@ -93,7 +89,7 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
      */
     public function getValue()
     {
-        if(!$this->config->isEnabled()){
+        if (!$this->config->isEnabled()) {
             return false;
         }
 
@@ -125,11 +121,11 @@ class FlashSalePrice extends AbstractPrice implements BasePriceProviderInterface
      */
     public function setFlashSaleInfo($flashSalePriceInfo)
     {
-        if(!$flashSalePriceInfo){
+        if (!$flashSalePriceInfo) {
             return;
         }
 
-        if($discount = $flashSalePriceInfo['discount_amount']){
+        if ($discount = $flashSalePriceInfo['discount_amount']) {
             $this->product->setData(FlashSaleService::FLASH_SALE_DISCOUNT, $discount);
         }
     }

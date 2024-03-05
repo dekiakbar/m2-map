@@ -61,4 +61,3 @@ class Edit extends \Deki\FlashSale\Controller\Adminhtml\Event
         return $resultPage;
     }
 }
-

@@ -148,4 +148,3 @@ class EventProductPriceRepository implements EventProductPriceRepositoryInterfac
         return $this->delete($this->get($eventProductPriceId));
     }
 }
-

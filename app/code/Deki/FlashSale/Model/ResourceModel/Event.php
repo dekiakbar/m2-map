@@ -141,4 +141,3 @@ class Event extends AbstractDb
         return $this->_eventProductTable;
     }
 }
-

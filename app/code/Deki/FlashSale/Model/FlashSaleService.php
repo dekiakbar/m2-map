@@ -128,6 +128,24 @@ class FlashSaleService
             return false;
         }
 
+        /**
+         * Sometime quote save qty in parent item ID.
+         * So we also need to check parent item.
+         */
+        if ($quoteItem->getParentItemId()) {
+            $parentItem = $quoteItem->getParentItem();
+
+            $parentIsQtyExceeded = $this->isQtyExceeded(
+                $quoteItem->getData(self::EVENT_PRODUCT_ID),
+                $parentItem->getQty()
+            );
+
+            if ($parentIsQtyExceeded) {
+                $this->addErrorInfoToQuote($parentItem, self::ERROR_QUOTE_ITEM_QTY);
+                return false;
+            }
+        }
+
         return true;
     }
 

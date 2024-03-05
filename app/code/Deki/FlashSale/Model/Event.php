@@ -11,6 +11,7 @@ use Deki\FlashSale\Api\Data\EventInterface;
 use Magento\Framework\Model\AbstractModel;
 use Deki\FlashSale\Model\ResourceModel\EventProduct\CollectionFactory as EventProductCollectionFactory;
 use Deki\FlashSale\Model\ResourceModel\EventProduct\Collection as EventProductCollection;
+
 class Event extends AbstractModel implements EventInterface
 {
     protected $_eventProductCollectionFactory;
@@ -22,8 +23,7 @@ class Event extends AbstractModel implements EventInterface
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
-    )
-    {
+    ) {
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
         $this->_eventProductCollectionFactory = $eventProductCollectionFactory;
     }
@@ -163,4 +163,3 @@ class Event extends AbstractModel implements EventInterface
         return $result;
     }
 }
-

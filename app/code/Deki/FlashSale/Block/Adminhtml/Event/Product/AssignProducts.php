@@ -5,6 +5,7 @@
  */
 
 namespace Deki\FlashSale\Block\Adminhtml\Event\Product;
+
 use Deki\FlashSale\Model\Event;
 
 class AssignProducts extends \Magento\Backend\Block\Template

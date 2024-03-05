@@ -6,8 +6,10 @@
 declare(strict_types=1);
 
 namespace Deki\FlashSale\Controller\Adminhtml;
+
 use Magento\Store\Model\Store;
 use Magento\Framework\App\ObjectManager;
+
 abstract class Event extends \Magento\Backend\App\Action
 {
     const ADMIN_RESOURCE = 'Deki_FlashSale::top_level';
@@ -84,4 +86,3 @@ abstract class Event extends \Magento\Backend\App\Action
         return $eventId ?: (int)$this->getRequest()->getParam('event_id', false);
     }
 }
-

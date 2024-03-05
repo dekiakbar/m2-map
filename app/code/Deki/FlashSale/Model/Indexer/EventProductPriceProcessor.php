@@ -16,6 +16,7 @@ use Magento\Framework\Indexer\AbstractProcessor;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFActory;
 
 use Deki\FlashSale\Model\Config;
+
 class EventProductPriceProcessor extends AbstractProcessor
 {
     /**
@@ -112,7 +113,7 @@ class EventProductPriceProcessor extends AbstractProcessor
                 /**
                  * Skip / exclude product with limit 0 from flash sale
                  */
-                if($product->getQty() <= 0){
+                if ($product->getQty() <= 0) {
                     continue;
                 }
 
@@ -153,7 +154,7 @@ class EventProductPriceProcessor extends AbstractProcessor
      */
     public function reindexFull($storeId = null)
     {
-        if(!$this->config->isEnabled()){
+        if (!$this->config->isEnabled()) {
             return;
         }
 

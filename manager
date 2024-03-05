@@ -201,7 +201,7 @@ USAGE="Development script
   cloud-post-deploy     Run post deploy hooks, configured by the post deploy hook in the .magento.app.yml file
   cs                    Run ./vendor/bin/phpcs command (Coding standard). ie: bin/manager cs --help
   cbf                   Run ./vendor/bin/phpcbf command (Auto fix Coding standard). ie: bin/manager cbf --help
-  magento-command       Run bin/magento command. ie: bin/manager magento cache:flush
+  magento       Run bin/magento command. ie: bin/manager magento cache:flush
   mftf-command          Run MFTF command for testing
   run-cron              Run cron jobs
 \n"
@@ -259,7 +259,7 @@ case "$1" in
   ece-tools)
     $BUILD_CONTAINER ece-command ${*:2}
     ;;
-  magento-command)
+  magento)
     $DEPLOY_CONTAINER magento-command ${*:2}
     ;;
   mftf-command)

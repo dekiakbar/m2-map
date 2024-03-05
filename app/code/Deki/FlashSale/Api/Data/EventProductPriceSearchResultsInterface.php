@@ -23,4 +23,3 @@ interface EventProductPriceSearchResultsInterface extends \Magento\Framework\Api
      */
     public function setItems(array $items);
 }
-
