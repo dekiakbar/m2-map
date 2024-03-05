@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# Reset
+Color_Off='\033[0m'
+# Background
+On_Green='\033[42m'
+
+# enable write file
+echo -e "${On_Green}Enable write file permission...${Color_Off}" &&
+chmod -R u+w . &&
+
+bin/magento maintenance:enable &&
+
+echo -e "${On_Green}Pulling code from git...${Color_Off}" &&
+git pull &&
+
+echo -e "${On_Green}Installing package dependencies...${Color_Off}" &&
+composer install --no-dev &&
+
+bin/magento deploy:mode:set production --skip-compilation &&
+bin/magento setup:upgrade && 
+bin/magento setup:di:compile &&
+bin/magento setup:static-content:deploy &&
+
+# disable write permission
+echo -e "${On_Green}Disable write file permission...${Color_Off}" &&
+find app/code var/view_preprocessed vendor pub/static app/etc generated/code generated/metadata \( -type f -or -type d \) -exec chmod u-w {} + && chmod o-rwx app/etc/env.php
+
+echo -e "${On_Green}Make the command-line tool executable...${Color_Off}" &&
+chmod u+x bin/magento &&
+
+bin/magento cache:flush &&
+
+bin/magento maintenance:disable &&
+
+echo -e "${On_Green}Done, Have a nice day :)${Color_Off}"
