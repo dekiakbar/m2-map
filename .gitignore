@@ -73,6 +73,6 @@ atlassian*
 !/generated/.htaccess
 .DS_Store
 
-./gcp-credential.txt
-./dbdump
-./tset.php
+gcp-credential.txt
+/dbdump
+test.php
