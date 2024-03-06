@@ -321,7 +321,16 @@
     }
 
     .navigation {
+        .ui-menu{
+            display: flex;
+            justify-content: space-between;
+        }
+
         .level0 {
+            display: flex;
+            flex: 1 1 auto;
+            justify-content: center;
+            
             > .level-top {
                 .lib-css(color, @color-white);
 
@@ -334,6 +343,12 @@
             &.has-active {
                 > .level-top {
                     .lib-css(color, @color-white);
+                }
+            }
+
+            &:hover{
+                &.level-top{
+                    background: darken(@navigation__background__desktop, 15%);
                 }
             }
         }

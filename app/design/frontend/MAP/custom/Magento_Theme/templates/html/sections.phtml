@@ -34,13 +34,13 @@ $groupCss = $block->getGroupCss();
                      */
                     if($name != 'store.menu'):
                 ?>
-                <div class="section-item-title <?= $block->escapeHtmlAttr($groupCss) ?>-item-title"
-                     data-role="collapsible">
-                    <a class="<?= $block->escapeHtmlAttr($groupCss) ?>-item-switch"
-                       data-toggle="switch" href="#<?= $block->escapeHtmlAttr($alias) ?>">
-                        <?= /* @noEscape */ $label ?>
-                    </a>
-                </div>
+                    <div class="section-item-title <?= $block->escapeHtmlAttr($groupCss) ?>-item-title"
+                        data-role="collapsible">
+                        <a class="<?= $block->escapeHtmlAttr($groupCss) ?>-item-switch"
+                        data-toggle="switch" href="#<?= $block->escapeHtmlAttr($alias) ?>">
+                            <?= /* @noEscape */ $label ?>
+                        </a>
+                    </div>
                 <?php endif; ?>
 
                 <div class="section-item-content <?= $block->escapeHtmlAttr($groupCss) ?>-item-content"
