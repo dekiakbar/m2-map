@@ -106,6 +106,6 @@ class FinalPriceBox extends \Magento\ConfigurableProduct\Pricing\Render\FinalPri
      */
     public function renderDiscountAmount()
     {
-        return 'Up To '.round($this->getFlashSaleDicount()).'% off';
+        return 'Flash Sale Up To '.round($this->getFlashSaleDicount()).'% off!';
     }
 }
