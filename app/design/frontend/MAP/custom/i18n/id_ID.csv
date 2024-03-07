@@ -156,7 +156,7 @@ Item,Barang
 Edit,Ubah
 "Remove item","Hapus item"
 "Products Requiring Attention","Produk yang Membutuhkan Perhatian"
-"Add to Cart","Masukkan ke keranjang"
+"Add to Cart","Tambah ke troli"
 File,Mengajukan
 "File extensions allowed: .csv","Ekstensi file diizinkan: .csv"
 "Add Row","Menambahkan baris"
@@ -1043,7 +1043,7 @@ Canceled,Dibatalkan
 "As low as","Mulai dari"
 "Buy %1 with %2 discount each","Beli %1 dengan diskon %2 masing-masing"
 "Go back to product details","Kembali ke detail produk"
-"Customize and Add to Cart","Sesuaikan dan Tambah ke Keranjang"
+"Customize and Add to Cart","Sesuaikan dan Tambah ke troli"
 "Your Customization","Kustomisasi Anda"
 Availability,Tersedianya
 "In stock",Tersedia
