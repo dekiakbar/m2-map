@@ -14,6 +14,16 @@ bin/magento maintenance:enable &&
 echo -e "${On_Green}Pulling code from git...${Color_Off}" &&
 git pull &&
 
+echo -e "${On_Green}Set env Variable...${Color_Off}" &&
+bin/magento setup:store-config:set --base-url="http://dekiakbar.cloud/" &&
+bin/magento setup:store-config:set --base-url-secure="https://dekiakbar.cloud/" &&
+bin/magento config:set dev/front_end_development_workflow/type server_side_compilation
+bin/magento config:set dev/template/allow_symlink 0 &&
+bin/magento config:set dev/static/sign 1 &&
+bin/magento config:set dev/js/minify_files 1 &&
+bin/magento config:set dev/css/minify_files 1 &&
+bin/magento config:set catalog/search/elasticsearch7_server_hostname 10.148.0.6 &&
+
 echo -e "${On_Green}Installing package dependencies...${Color_Off}" &&
 composer install --no-dev &&
 
@@ -29,6 +39,8 @@ find app/code var/view_preprocessed vendor pub/static app/etc generated/code gen
 echo -e "${On_Green}Make the command-line tool executable...${Color_Off}" &&
 chmod u+x bin/magento &&
 
+echo -e "${On_Green}Enable and flush cache...${Color_Off}" &&
+bin/magento cache:enable &&
 bin/magento cache:flush &&
 
 bin/magento maintenance:disable &&
