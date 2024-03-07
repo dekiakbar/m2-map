@@ -219,6 +219,26 @@
 }
 
 //
+//  Desktop Min 768PX
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+        .block-search {
+            width: 65%;
+        }
+    // }
+}
+
+//
+//  Desktop min 1440px
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .block-search {
+        width: 75%;
+    }
+}
+
+//
 //  Desktop
 //  _____________________________________________
 
@@ -227,8 +247,6 @@
         float: right;
         padding-left: 15px;
         position: relative;
-        // width: 250px;
-        width: 55%;
         z-index: 4;
 
         .label {
