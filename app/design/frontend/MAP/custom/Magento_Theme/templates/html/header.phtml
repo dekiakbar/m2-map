@@ -14,7 +14,7 @@ $welcomeMessage = $block->getWelcome();
     <li class="greet welcome" data-bind="scope: 'customer'">
         <!-- ko if: customer().fullname  -->
         <span class="logged-in"
-              data-bind="text: new String('<?= $escaper->escapeHtml(__('Welcome, %1!', '%1')) ?>').
+              data-bind="text: new String('<?= $escaper->escapeHtml(__('Hi, %1!', '%1')) ?>').
               replace('%1', customer().fullname)">
         </span>
         <!-- /ko -->
