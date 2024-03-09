@@ -7,12 +7,6 @@
 <div class="block-title">
     <strong>
         <span class="text" translate="'My Cart'"></span>
-        <span
-            class="qty empty"
-            text="getCartParam('summary_count')"
-            data-bind="css: { empty: !!getCartParam('summary_count') == false },
-                       attr: { title: $t('Items in Cart') }">
-        </span>
     </strong>
 </div>
 
@@ -47,9 +41,9 @@
             <p class="minicart empty text" text="getCartParam('cart_empty_message')"></p>
             <div class="actions">
                 <div class="secondary">
-                    <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
-                        <span translate="'View and Edit Cart'"></span>
-                    </a>
+                    <button class="action viewcart" onclick="window.location.href=jQuery(this).attr('data-href')" data-bind="attr: {'data-href': shoppingCartUrl}">
+                        <span translate="'VIEW CART'"></span>
+                    </button>
                 </div>
             </div>
         </if>
@@ -68,11 +62,11 @@
                     data-action="close"
                     data-bind="
                         attr: {
-                            title: $t('Proceed to Checkout')
+                            title: $t('BUY NOW')
                         },
                         click: closeMinicart()
                     "
-                    translate="'Proceed to Checkout'">
+                    translate="'BUY NOW'">
             </button>
             <div data-bind="html: getCartParamUnsanitizedHtml('extra_actions')"></div>
         </div>
@@ -80,9 +74,9 @@
 
     <div class="actions" if="getCartParam('summary_count')">
         <div class="secondary">
-            <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
-                <span translate="'View and Edit Cart'"></span>
-            </a>
+            <button class="action viewcart" onclick="window.location.href=jQuery(this).attr('data-href')" data-bind="attr: {'data-href': shoppingCartUrl}">
+                <span translate="'VIEW CART'"></span>
+            </button>
         </div>
     </div>
 
