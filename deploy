@@ -30,7 +30,7 @@ composer install --no-dev &&
 bin/magento deploy:mode:set production --skip-compilation &&
 bin/magento setup:upgrade && 
 bin/magento setup:di:compile &&
-bin/magento setup:static-content:deploy &&
+bin/magento setup:static-content:deploy en_US id_ID &&
 
 # disable write permission
 echo -e "${On_Green}Disable write file permission...${Color_Off}" &&
