@@ -133,10 +133,6 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
         )->addAttributeToSelect(
             'sku'
         )->addAttributeToSelect(
-            'visibility'
-        )->addAttributeToSelect(
-            'status'
-        )->addAttributeToSelect(
             'type_id'
         )->addAttributeToSelect(
             'price'
@@ -207,28 +203,6 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
                 'header' => __('SKU'),
                 'index' => 'sku',
                 'sortable' => true,
-            ]
-        );
-
-        $this->addColumn(
-            'visibility',
-            [
-                'header' => __('Visibility'),
-                'index' => 'visibility',
-                'type' => 'options',
-                'options' => $this->visibility->getOptionArray(),
-                'header_css_class' => 'col-visibility',
-                'column_css_class' => 'col-visibility'
-            ]
-        );
-
-        $this->addColumn(
-            'status',
-            [
-                'header' => __('Status'),
-                'index' => 'status',
-                'type' => 'options',
-                'options' => $this->status->getOptionArray()
             ]
         );
 
