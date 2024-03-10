@@ -13,3 +13,23 @@
 .divider{
     margin: 30px 0;
 }
+
+@media all{
+    .cms-index-index .page-title{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);border:0;}
+    .content-heading{text-align:center;margin:10px 0 25px;}
+    .content-heading .title{margin:0 0 5px;}
+    .content-heading .info{margin-bottom:0;}
+}
+
+@media only screen and (max-width: 767px){
+    .content-heading .title{font-size:3rem;}
+    .content-heading .info{font-size:1.4rem;}
+}
+
+@media all and (min-width: 768px), print{
+    .content-heading{position:relative;}
+    .content-heading:before{content:"";display:block;height:1px;width:100%;background:-moz-radial-gradient(center, ellipse cover, #ffffff 25%, #cecece 100%);background:-webkit-gradient(radial, center center, 0, center center, 100%, color-stop(25%, #ffffff), color-stop(100%, #cecece));background:-webkit-radial-gradient(center, ellipse cover, #ffffff 25%, #cecece 100%);background:-ms-radial-gradient(center, ellipse cover, #ffffff 25%, #cecece 100%);background:radial-gradient(ellipse at center, #ffffff 25%, #cecece 100%);position:absolute;top:50%;z-index:0;}
+    .content-heading .title,.content-heading .info{position:relative;z-index:1;}
+    .content-heading .title{font-size:3.8rem;}
+    .content-heading .info{font-size:1.8rem;}
+}
