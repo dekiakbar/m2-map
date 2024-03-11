@@ -49,14 +49,28 @@ class DeductQuantityAfterOrder implements \Magento\Framework\Event\ObserverInter
 
         /** @var \Magento\Quote\Model\Quote $quote */
         $quote = $observer->getEvent()->getQuote();
+        /** @var \Magento\Quote\Model\Quote\Item[] $items */
         $items = $quote->getItemsCollection();
 
         foreach ($items as $item) {
             if ($item->getData('is_flash_sale')) {
-                $this->flashSaleService->deductEventProductQty(
-                    $item->getData('flash_sale_event_product_id'),
-                    $item->getQty()
-                );
+
+                /**
+                 * Deduct qty, magento save item qty on parent (configurable product)
+                 */
+                if($item->getParentItemId()){
+                    $parent = $item->getParentItem();
+                    $this->flashSaleService->deductEventProductQty(
+                        $item->getData('flash_sale_event_product_id'),
+                        $parent->getQty()
+                    );
+                }else{
+                    // simple product
+                    $this->flashSaleService->deductEventProductQty(
+                        $item->getData('flash_sale_event_product_id'),
+                        $item->getQty()
+                    );
+                }
             }
         }
     }
