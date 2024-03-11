@@ -15,14 +15,22 @@ class Save extends \Magento\Backend\App\Action
     protected $dataPersistor;
 
     /**
+     * @var \Deki\FlashSale\Model\EventFactory
+     */
+    protected $eventFactory;
+
+    /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+     * @param \Deki\FlashSale\Model\EventFactory $eventFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor,
+        \Deki\FlashSale\Model\EventFactory $eventFactory
     ) {
         $this->dataPersistor = $dataPersistor;
+        $this->eventFactory = $eventFactory;
         parent::__construct($context);
     }
 
@@ -40,7 +48,7 @@ class Save extends \Magento\Backend\App\Action
         if ($data) {
             $id = $this->getRequest()->getParam('event_id');
         
-            $model = $this->_objectManager->create(\Deki\FlashSale\Model\Event::class)->load($id);
+            $model = $this->eventFactory->create()->load($id);
             if (!$model->getId() && $id) {
                 $this->messageManager->addErrorMessage(__('This Event no longer exists.'));
                 return $resultRedirect->setPath('*/*/');

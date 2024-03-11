@@ -34,14 +34,4 @@ class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
     {
         return (float)$this->getSaleableItem()->getData(FlashSaleService::FLASH_SALE_DISCOUNT);
     }
-
-    /**
-     * Render flas sale discount
-     *
-     * @return string
-     */
-    public function renderDiscountAmount()
-    {
-        return "Flash Sale ".round($this->getFlashSaleDicount()).'% off!';
-    }
 }

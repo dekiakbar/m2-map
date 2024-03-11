@@ -15,7 +15,12 @@ $schema = ($block->getZone() == 'item_view') ? true : false;
 <?php if ($block->hasSpecialPrice()) : ?>
     <?php if($block->hasFlashSalePrice()): ?>
         <span class="discount-amount">
-            <?= /* @noEscape */ $block->renderDiscountAmount(); ?>
+            <?= /* @noEscape */
+                sprintf(
+                    __("Flash Sale Up To %s%% off!"),
+                    (string)round($block->getFlashSaleDicount())
+                )
+            ?>
         </span>
     <?php endif; ?>
     <span class="special-price">

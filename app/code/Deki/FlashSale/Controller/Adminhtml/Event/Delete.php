@@ -24,7 +24,7 @@ class Delete extends \Deki\FlashSale\Controller\Adminhtml\Event
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create(\Deki\FlashSale\Model\Event::class);
+                $model = $this->eventFactory->create();
                 $model->load($id);
                 $model->delete();
                 // display success message
