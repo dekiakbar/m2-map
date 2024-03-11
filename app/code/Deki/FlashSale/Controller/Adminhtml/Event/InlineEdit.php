@@ -11,16 +11,23 @@ class InlineEdit extends \Magento\Backend\App\Action
 {
 
     protected $jsonFactory;
+    /**
+     * @var \Deki\FlashSale\Model\EventFactory
+     */
+    protected $eventFactory;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+     * @param \Deki\FlashSale\Model\EventFactory $eventFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory,
+        \Deki\FlashSale\Model\EventFactory $eventFactory
     ) {
         parent::__construct($context);
+        $this->eventFactory = $eventFactory;
         $this->jsonFactory = $jsonFactory;
     }
 
@@ -44,7 +51,7 @@ class InlineEdit extends \Magento\Backend\App\Action
             } else {
                 foreach (array_keys($postItems) as $modelid) {
                     /** @var \Deki\FlashSale\Model\Event $model */
-                    $model = $this->_objectManager->create(\Deki\FlashSale\Model\Event::class)->load($modelid);
+                    $model = $this->eventFactory->create()->load($modelid);
                     try {
                         $model->setData(array_merge($model->getData(), $postItems[$modelid]));
                         $model->save();

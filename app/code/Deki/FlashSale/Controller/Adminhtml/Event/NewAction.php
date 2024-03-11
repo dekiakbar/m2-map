@@ -15,15 +15,24 @@ class NewAction extends \Deki\FlashSale\Controller\Adminhtml\Event
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Deki\FlashSale\Model\EventFactory $eventFactory
      * @param \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Deki\FlashSale\Model\EventFactory $eventFactory,
         \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
     ) {
         $this->resultForwardFactory = $resultForwardFactory;
-        parent::__construct($context, $coreRegistry);
+        parent::__construct(
+            $context,
+            $coreRegistry,
+            $storeManager,
+            $eventFactory
+        );
     }
 
     /**

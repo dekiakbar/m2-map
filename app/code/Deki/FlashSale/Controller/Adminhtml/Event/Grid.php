@@ -20,18 +20,24 @@ class Grid extends \Deki\FlashSale\Controller\Adminhtml\Event
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
+     * @param \Deki\FlashSale\Model\EventFactory $eventFactory
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Framework\Controller\Result\RawFactory $resultRawFactory
      * @param \Magento\Framework\View\LayoutFactory $layoutFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
+        \Deki\FlashSale\Model\EventFactory $eventFactory,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\Controller\Result\RawFactory $resultRawFactory,
-        \Magento\Framework\View\LayoutFactory $layoutFactory
+        \Magento\Framework\View\LayoutFactory $layoutFactory,
     ) {
         parent::__construct(
             $context,
-            $coreRegistry
+            $coreRegistry,
+            $storeManager,
+            $eventFactory
         );
         $this->resultRawFactory = $resultRawFactory;
         $this->layoutFactory = $layoutFactory;

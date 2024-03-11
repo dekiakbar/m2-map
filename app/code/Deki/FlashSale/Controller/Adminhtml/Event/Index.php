@@ -13,16 +13,22 @@ class Index extends \Magento\Backend\App\Action
     protected $resultPageFactory;
 
     /**
-     * Constructor
-     *
+     * @var \Deki\FlashSale\Model\EventFactory
+     */
+    protected $eventFactory;
+
+    /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param \Deki\FlashSale\Model\EventFactory $eventFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Deki\FlashSale\Model\EventFactory $eventFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
+        $this->eventFactory = $eventFactory;
         parent::__construct($context);
     }
 

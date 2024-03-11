@@ -16,14 +16,23 @@ class Edit extends \Deki\FlashSale\Controller\Adminhtml\Event
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Deki\FlashSale\Model\EventFactory $eventFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Deki\FlashSale\Model\EventFactory $eventFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
-        parent::__construct($context, $coreRegistry);
+        parent::__construct(
+            $context,
+            $coreRegistry,
+            $storeManager,
+            $eventFactory
+        );
     }
 
     /**
@@ -35,7 +44,7 @@ class Edit extends \Deki\FlashSale\Controller\Adminhtml\Event
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('event_id');
-        $model = $this->_objectManager->create(\Deki\FlashSale\Model\Event::class);
+        $model = $this->eventFactory->create();
         
         // 2. Initial checking
         if ($id) {

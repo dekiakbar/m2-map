@@ -25,18 +25,27 @@ abstract class Event extends \Magento\Backend\App\Action
     private $storeManager;
 
     /**
+     * @var \Deki\FlashSale\Model\EventFactory
+     */
+    protected $eventFactory;
+
+    /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
+     * @param \Magento\Store\Model\StoreManagerInterface|null $storeManager
+     * @param \Deki\FlashSale\Model\EventFactory $eventFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
         \Magento\Store\Model\StoreManagerInterface $storeManager = null,
+        \Deki\FlashSale\Model\EventFactory $eventFactory
     ) {
         $this->_coreRegistry = $coreRegistry;
         $this->storeManager = $storeManager ?: ObjectManager::getInstance()->get(
             \Magento\Store\Model\StoreManagerInterface::class
         );
+        $this->eventFactory = $eventFactory;
         parent::__construct($context);
     }
 
