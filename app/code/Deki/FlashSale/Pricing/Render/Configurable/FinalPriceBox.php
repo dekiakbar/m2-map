@@ -98,14 +98,4 @@ class FinalPriceBox extends \Magento\ConfigurableProduct\Pricing\Render\FinalPri
         }
         return max($discountAmounts);
     }
-
-    /**
-     * Render flash sale discount
-     *
-     * @return string
-     */
-    public function renderDiscountAmount()
-    {
-        return 'Flash Sale Up To '.round($this->getFlashSaleDicount()).'% off!';
-    }
 }
